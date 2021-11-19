@@ -1,0 +1,16 @@
+{
+  "resourceName": "9257files",
+  "policyUUID": "5d3151a2",
+  "bucketName": "92574b11e0ccc9864d909db173502dfd49bb",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

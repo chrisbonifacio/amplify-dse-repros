@@ -37,5 +37,3 @@ export const deleteBlogByID = async id => {
     console.log(error);
   }
 };
-
-export const refetchBlogs = () => fetchBlogs();
