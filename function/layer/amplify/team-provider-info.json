@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-layer-dev-151409-authRole",
+      "UnauthRoleArn": "arn:aws:iam::084642052437:role/amplify-layer-dev-151409-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::084642052437:role/amplify-layer-dev-151409-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-layer-dev-151409-deployment",
+      "UnauthRoleName": "amplify-layer-dev-151409-unauthRole",
+      "StackName": "amplify-layer-dev-151409",
+      "StackId": "arn:aws:cloudformation:us-east-1:084642052437:stack/amplify-layer-dev-151409/ef167490-47e2-11ec-906e-12a334f5ac95",
+      "AmplifyAppId": "d1an98vo8r7pyh"
+    },
+    "categories": {
+      "function": {
+        "layerlayerb0637deb": {
+          "deploymentBucketName": "amplify-layer-dev-151409-deployment",
+          "s3Key": "amplify-builds/layerlayerb0637deb-LambdaLayerVersion3c21297f-build.zip"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "function": {
+    "layerlayerb0637deb": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    }
+  }
+}

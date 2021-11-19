@@ -1,0 +1,20 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "shortMessage": "Command failed with exit code 1: /private/var/folders/vl/6hsfvg8s19zchv6xwvvg6dz00000gn/T/dlx-16528/bin/react-native init graphql-api",
+    "command": "/private/var/folders/vl/6hsfvg8s19zchv6xwvvg6dz00000gn/T/dlx-16528/bin/react-native init graphql-api",
+    "escapedCommand": "\"/private/var/folders/vl/6hsfvg8s19zchv6xwvvg6dz00000gn/T/dlx-16528/bin/react-native\" init graphql-api",
+    "exitCode": 1,
+    "failed": true,
+    "timedOut": false,
+    "isCanceled": false,
+    "killed": false,
+    "err": {
+      "name": "pnpm",
+      "message": "Command failed with exit code 1: /private/var/folders/vl/6hsfvg8s19zchv6xwvvg6dz00000gn/T/dlx-16528/bin/react-native init graphql-api",
+      "stack": "pnpm: Command failed with exit code 1: /private/var/folders/vl/6hsfvg8s19zchv6xwvvg6dz00000gn/T/dlx-16528/bin/react-native init graphql-api\n    at makeError (/snapshot/dist/pnpm.cjs)\n    at handlePromise (/snapshot/dist/pnpm.cjs)\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n    at async Object.handler [as dlx] (/snapshot/dist/pnpm.cjs)\n    at async /snapshot/dist/pnpm.cjs\n    at async run (/snapshot/dist/pnpm.cjs)\n    at async runPnpm (/snapshot/dist/pnpm.cjs)\n    at async /snapshot/dist/pnpm.cjs"
+    }
+  }
+}
