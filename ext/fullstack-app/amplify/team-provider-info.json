@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fullstackapp-dev-165440-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123710206839:role/amplify-fullstackapp-dev-165440-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123710206839:role/amplify-fullstackapp-dev-165440-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
+      "UnauthRoleName": "amplify-fullstackapp-dev-165440-unauthRole",
+      "StackName": "amplify-fullstackapp-dev-165440",
+      "StackId": "arn:aws:cloudformation:us-east-1:123710206839:stack/amplify-fullstackapp-dev-165440/ccaac7d0-4bde-11ec-83b6-0ae89eacb98f",
+      "AmplifyAppId": "d4vw9ihec9osi"
+    },
+    "categories": {
+      "auth": {
+        "fullstackappbea409ca": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizerca9067b0": {
+          "deploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizerca9067b0-4b684f6c4a4733743971-build.zip"
+        }
+      }
+    }
+  }
+}
