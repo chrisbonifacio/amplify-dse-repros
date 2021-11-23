@@ -1,0 +1,13 @@
+{
+  "resourceName": "s34255f2ee",
+  "policyUUID": "4255f2ee",
+  "bucketName": "fullstackapp3050372a0b9a41ab8e0e956ccb364d20",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE"
+}

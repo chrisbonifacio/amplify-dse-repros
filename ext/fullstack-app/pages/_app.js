@@ -7,7 +7,10 @@ import "@aws-amplify/ui-react/styles.css";
 
 Amplify.Logger.LOG_LEVEL = "DEBUG";
 
-Amplify.configure(awsconfig);
+Amplify.configure({
+  ...awsconfig,
+  ssr: true,
+});
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -57,7 +57,9 @@ type IAMTodo @model @auth(rules: [{ allow: public, provider: iam }]) {
   completed: Boolean!
 }
 
-type PrivateTodo @model @auth(rules: [{ allow: owner, provider: oidc }]) {
+type PrivateTodo
+  @model
+  @auth(rules: [{ allow: owner, provider: oidc, identityClaim: "sub" }]) {
   id: ID!
   title: String!
   completed: Boolean!

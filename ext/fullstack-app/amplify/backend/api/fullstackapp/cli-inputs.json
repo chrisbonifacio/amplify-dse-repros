@@ -7,7 +7,7 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 7,
-      "apiKeyExpirationDate": "2021-11-30T08:33:46.056Z",
+      "apiKeyExpirationDate": "2021-11-30T18:15:52.102Z",
       "keyDescription": ""
     },
     "additionalAuthTypes": [
@@ -20,7 +20,7 @@
       },
       {
         "mode": "OPENID_CONNECT",
-        "openIDProviderName": "auth0",
+        "openIDProviderName": "Auth0",
         "openIDIssuerURL": "https://dev-7w7q5fl7.us.auth0.com/",
         "openIDClientID": "",
         "openIDAuthTTL": "0",
