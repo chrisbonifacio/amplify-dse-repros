@@ -163,7 +163,10 @@ const OIDCTodos = () => {
       }).subscribe({
         next: ({ provider, value }) => {
           console.log({ provider, value });
-          setSubAction("private todo created");
+          setSubAction({
+            action: "Created: ",
+            value: value.data.onCreatePrivateTodo,
+          });
         },
       });
 
@@ -173,7 +176,10 @@ const OIDCTodos = () => {
       }).subscribe({
         next: ({ provider, value }) => {
           console.log({ provider, value });
-          setSubAction("private todo updated");
+          setSubAction({
+            action: "Updated: ",
+            value: value.data.onUpdatePrivateTodo,
+          });
         },
       });
 
@@ -183,7 +189,10 @@ const OIDCTodos = () => {
       }).subscribe({
         next: ({ provider, value }) => {
           console.log({ provider, value });
-          setSubAction("private todo deleted");
+          setSubAction({
+            action: "Deleted: ",
+            value: value.data.onDeletePrivateTodo,
+          });
         },
       });
     }
@@ -196,20 +205,31 @@ const OIDCTodos = () => {
   }, [OIDCAccessToken]);
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div
+      style={{
+        width: "60%",
+        margin: "0 auto",
+        padding: "2rem",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
       <div>
         <Link href="/">Home</Link>
         <h2>Private Todos (OIDC)</h2>
-        <button onClick={loginWithOIDC}>Sign In With OIDC</button>
-        <button
-          onClick={() => {
-            Auth.signOut({ global: true });
-          }}
-        >
-          Sign Out
-        </button>
 
-        <form onSubmit={createNewPrivateTodo}>
+        <div style={{ marginBottom: "1rem" }}>
+          <button onClick={loginWithOIDC}>Sign In With OIDC</button>
+          <button
+            onClick={() => {
+              Auth.signOut({ global: true });
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
+
+        <form style={{ marginBottom: "1rem" }} onSubmit={createNewPrivateTodo}>
           <input
             name="privateTodo"
             value={newPrivateTodo}
@@ -219,7 +239,9 @@ const OIDCTodos = () => {
           />
           <input type="submit" />
         </form>
+
         <button onClick={getPrivateTodos}>Get Todos With OIDC</button>
+
         {privateTodos.map((todo) => (
           <div key={todo.id}>
             <p key={todo.id}>{todo.title}</p>
@@ -230,7 +252,8 @@ const OIDCTodos = () => {
       <div>
         <h2>Subscriptions</h2>
         <div>
-          {subAction?.action || "Listening"}: {JSON.stringify(subAction?.value)}
+          {subAction?.action || "Listening"}:{" "}
+          <pre>{JSON.stringify(subAction?.value, null, 2)}</pre>
         </div>
       </div>
     </div>
