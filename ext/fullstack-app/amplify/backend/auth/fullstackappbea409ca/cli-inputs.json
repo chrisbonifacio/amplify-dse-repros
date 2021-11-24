@@ -59,16 +59,31 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [],
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "fullstackappbea409caPreSignup",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
     "thirdPartyAuth": false,
     "userPoolGroups": true,
     "adminQueries": false,
-    "triggers": {},
+    "triggers": {
+      "PreSignup": [
+        "email-filter-allowlist"
+      ]
+    },
     "hostedUI": false,
     "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"fullstackappbea409caPreSignup\"\n  }\n]"
   }
 }

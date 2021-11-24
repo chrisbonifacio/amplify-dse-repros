@@ -75,7 +75,7 @@ const CognitoBlogs = () => {
           <>
             <h2>Private Blogs (Cognito)</h2>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <p>Welcome, {user.attributes.email}</p>
+              <p>Welcome, {user?.attributes?.email || user?.attributes?.sub}</p>
               <button
                 style={{ height: "2rem", marginLeft: "1rem" }}
                 onClick={signOut}

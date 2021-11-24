@@ -35,9 +35,6 @@ export const getBlog = /* GraphQL */ `
     getBlog(id: $id) {
       id
       name
-      createdAt
-      updatedAt
-      owner
       posts {
         items {
           id
@@ -49,6 +46,9 @@ export const getBlog = /* GraphQL */ `
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
@@ -62,12 +62,12 @@ export const listBlogs = /* GraphQL */ `
       items {
         id
         name
-        createdAt
-        updatedAt
-        owner
         posts {
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }
@@ -79,19 +79,16 @@ export const getPost = /* GraphQL */ `
       id
       title
       blogID
-      createdAt
-      updatedAt
       blog {
         id
         name
-        createdAt
-        updatedAt
-        owner
         posts {
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
-      owner
       comments {
         items {
           id
@@ -103,6 +100,9 @@ export const getPost = /* GraphQL */ `
         }
         nextToken
       }
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;
@@ -117,8 +117,6 @@ export const listPosts = /* GraphQL */ `
         id
         title
         blogID
-        createdAt
-        updatedAt
         blog {
           id
           name
@@ -126,10 +124,12 @@ export const listPosts = /* GraphQL */ `
           updatedAt
           owner
         }
-        owner
         comments {
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }
@@ -140,15 +140,10 @@ export const getComment = /* GraphQL */ `
     getComment(id: $id) {
       id
       postID
-      content
-      createdAt
-      updatedAt
       post {
         id
         title
         blogID
-        createdAt
-        updatedAt
         blog {
           id
           name
@@ -156,11 +151,16 @@ export const getComment = /* GraphQL */ `
           updatedAt
           owner
         }
-        owner
         comments {
           nextToken
         }
+        createdAt
+        updatedAt
+        owner
       }
+      content
+      createdAt
+      updatedAt
       owner
     }
   }
@@ -175,9 +175,6 @@ export const listComments = /* GraphQL */ `
       items {
         id
         postID
-        content
-        createdAt
-        updatedAt
         post {
           id
           title
@@ -186,6 +183,9 @@ export const listComments = /* GraphQL */ `
           updatedAt
           owner
         }
+        content
+        createdAt
+        updatedAt
         owner
       }
       nextToken
@@ -229,7 +229,6 @@ export const getPrivateTodo = /* GraphQL */ `
       completed
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -246,7 +245,6 @@ export const listPrivateTodos = /* GraphQL */ `
         completed
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

@@ -2,13 +2,13 @@
   "features": {
     "graphqltransformer": {
       "addmissingownerfields": true,
-      "improvepluralization": false,
+      "improvepluralization": true,
       "validatetypenamereservedwords": true,
-      "useexperimentalpipelinedtransformer": false,
+      "useexperimentalpipelinedtransformer": true,
       "enableiterativegsiupdates": true,
       "secondarykeyasgsi": true,
       "skipoverridemutationinputtypes": true,
-      "transformerversion": 1,
+      "transformerversion": 2,
       "suppressschemamigrationprompt": true
     },
     "frontend-ios": {

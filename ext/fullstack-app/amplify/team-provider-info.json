@@ -9,16 +9,28 @@
       "UnauthRoleName": "amplify-fullstackapp-dev-165440-unauthRole",
       "StackName": "amplify-fullstackapp-dev-165440",
       "StackId": "arn:aws:cloudformation:us-east-1:123710206839:stack/amplify-fullstackapp-dev-165440/ccaac7d0-4bde-11ec-83b6-0ae89eacb98f",
-      "AmplifyAppId": "d4vw9ihec9osi"
+      "AmplifyAppId": "d4vw9ihec9osi",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-fullstackapp-dev-165440-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-fullstackapp-dev-165440-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
-        "fullstackappbea409ca": {}
+        "fullstackappbea409ca": {},
+        "userPoolGroups": {}
       },
       "function": {
         "graphQlLambdaAuthorizerca9067b0": {
           "deploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
           "s3Key": "amplify-builds/graphQlLambdaAuthorizerca9067b0-4b684f6c4a4733743971-build.zip"
+        },
+        "fullstackapp8ad88983": {
+          "deploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
+          "s3Key": "amplify-builds/fullstackapp8ad88983-66756146707a364f5873-build.zip"
+        },
+        "fullstackappbea409caPreSignup": {
+          "DOMAINALLOWLIST": "gmail.com",
+          "deploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
+          "s3Key": "amplify-builds/fullstackappbea409caPreSignup-5134504f3148496a4a6e-build.zip"
         }
       }
     }
