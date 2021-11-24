@@ -1,6 +1,10 @@
+import React from "react";
 import Link from "next/link";
 
 function App() {
+  // React.useEffect(() => {
+
+  // }, []);
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Extensibility GraphQL API Test</h1>

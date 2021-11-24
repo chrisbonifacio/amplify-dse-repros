@@ -124,11 +124,5 @@
       ]
     }
   },
-  "storage": {
-    "s34255f2ee": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
-    }
-  }
+  "storage": {}
 }
