@@ -3,18 +3,26 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Amplify } from "aws-amplify";
-import { AmplifyProvider } from "@aws-amplify/ui-react";
+import { Amplify, AuthModeStrategyType } from "aws-amplify";
 import awsconfig from "./aws-exports";
-
+import { AmplifyProvider, Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
-Amplify.configure(awsconfig);
+Amplify.Logger.LOG_LEVEL = "DEBUG";
+
+Amplify.configure({
+  ...awsconfig,
+  DataStore: {
+    authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <AmplifyProvider>
-      <App />
+      <Authenticator>
+        {({ signOut, user }) => <App signOut={signOut} user={user} />}
+      </Authenticator>
     </AmplifyProvider>
   </React.StrictMode>,
   document.getElementById("root")
