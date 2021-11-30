@@ -1,10 +1,20 @@
 import React from "react";
 import Link from "next/link";
+import { API, Auth } from "aws-amplify";
 
 function App() {
-  // React.useEffect(() => {
-
-  // }, []);
+  const getItems = async () => {
+    const items = await API.get("apic6d3a0d2", "/items", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: (await Auth.currentSession()).getIdToken().getJwtToken(),
+      },
+    });
+    console.log(items);
+  };
+  React.useEffect(() => {
+    getItems();
+  }, []);
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Extensibility GraphQL API Test</h1>
