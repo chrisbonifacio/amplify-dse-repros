@@ -33,14 +33,14 @@ const Profile = ({ userProp }) => {
   console.log({ userProp });
   const [user, setUser] = React.useState(JSON.parse(userProp));
   const [creds, setCreds] = React.useState({
-    email: "",
+    username: "",
     password: "",
   });
 
   const login = async (e) => {
     e.preventDefault();
     try {
-      await Auth.signIn(creds.email, creds.password);
+      await Auth.signIn(creds.username, creds.password);
       Router.push("/");
     } catch (error) {
       console.log(error);
@@ -66,7 +66,7 @@ const Profile = ({ userProp }) => {
 
       {user ? (
         <>
-          <h1>Welcome, {user?.attributes?.email}</h1>
+          <h1>Welcome, {user?.attributes?.username}</h1>
           <button onClick={logout}>Sign Out</button>
         </>
       ) : (
@@ -74,9 +74,9 @@ const Profile = ({ userProp }) => {
           <form onSubmit={login}>
             <input
               type="text"
-              name="email"
-              value={creds.email}
-              placeholder="email"
+              name="username"
+              value={creds.username}
+              placeholder="username"
               onChange={handleChange}
             />
             <input
