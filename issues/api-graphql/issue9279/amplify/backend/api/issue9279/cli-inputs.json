@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "issue9279",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/cbonifacio/Documents/work/amplify-dse-repros/issues/api-graphql/issue9279/amplify/backend/api/issue9279/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2021-12-08T19:38:21.221Z",
+      "keyDescription": ""
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authissue9279e9ef41b2e9ef41b2"
+      }
+    ]
+  }
+}

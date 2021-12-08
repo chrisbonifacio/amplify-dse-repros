@@ -10,46 +10,10 @@ import {
 } from "../src/graphql/subscriptions";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import AWSAppSyncClient, { AUTH_TYPE } from "aws-appsync";
-import awsconfig from "../src/aws-exports";
-import gql from "graphql-tag";
-
-const getAuth0Token = async () => {
-  try {
-    const {
-      data: { access_token },
-    } = await axios.post(
-      "https://dev-7w7q5fl7.us.auth0.com/oauth/token",
-      {
-        client_id: "liO9Y36I2JPPM6hUKd0Ka49Boe9d5UWO",
-        client_secret:
-          "0_3_9FMdT4KfSeBsEUtxbIENmmfe_BO2GZY0S6Ps1SI9wc3iOqS8gStAlnVx4cF4",
-        audience: "https://aws.amazon.com",
-        grant_type: "client_credentials",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return access_token;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const client = new AWSAppSyncClient({
-  url: awsconfig.aws_appsync_graphqlEndpoint,
-  region: awsconfig.aws_appsync_region,
-  auth: {
-    type: AUTH_TYPE.OPENID_CONNECT,
-    jwtToken: () => getAuth0Token(),
-  },
-  disableOffline: true,
-});
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 const OIDCTodos = () => {
+  const { user, getAccessTokenSilently, logout } = useAuth0();
   const [newPrivateTodo, setNewPrivateTodo] = React.useState("");
   const [privateTodos, setPrivateTodos] = React.useState([]);
   const [OIDCAccessToken, setOIDCAccessToken] = React.useState("");
@@ -57,23 +21,63 @@ const OIDCTodos = () => {
     action: "",
     value: null,
   });
-  const [user, setUser] = React.useState(null);
 
-  const loginWithOIDC = async () => {
-    const { iss, exp } = jwtDecode(OIDCAccessToken);
-
-    console.log({ iss, exp });
-
+  const getAuth0Token = async () => {
     try {
-      const cognitoResponse = await Auth.federatedSignIn(
-        "dev-7w7q5fl7.us.auth0.com",
+      const {
+        data: { access_token },
+      } = await axios.post(
+        process.env.NEXT_PUBLIC_AUTH0_TOKEN_URL,
         {
-          token: await getAuth0Token(),
-          expires_at: exp * 1000 + new Date().getTime(),
+          client_id: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
+          client_secret: process.env.NEXT_PUBLIC_AUTH0_CLIENT_SECRET,
+          audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE,
+          grant_type: "client_credentials",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
+      return access_token;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-      setUser(cognitoResponse);
+  const loginWithOIDC = async () => {
+    try {
+      const accessToken = await getAccessTokenSilently({
+        audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE,
+        scope: process.env.NEXT_PUBLIC_AUTH0_SCOPE,
+      });
+
+      console.log(accessToken);
+
+      const { exp } = jwtDecode(accessToken);
+
+      await Auth.federatedSignIn(
+        process.env.NEXT_PUBLIC_AUTH0_DOMAIN,
+        {
+          token: accessToken,
+          expires_at: exp * 1000 + new Date().getTime(),
+        },
+        {
+          name: user.name,
+          email: user.email,
+          email_verified: user.email_verified,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const logoutWithOIDC = async () => {
+    try {
+      await Auth.signOut();
+      logout();
     } catch (error) {
       console.log(error);
     }
@@ -94,9 +98,7 @@ const OIDCTodos = () => {
         query: listPrivateTodos,
         authMode: "OPENID_CONNECT",
       });
-      // const result = await client.query({
-      //   query: gql(listPrivateTodos),
-      // });
+
       setPrivateTodos(appsyncResponse.data.listPrivateTodos.items);
     } catch (error) {
       console.log(error);
@@ -136,7 +138,6 @@ const OIDCTodos = () => {
           },
         },
         authMode: "OPENID_CONNECT",
-        authToken: OIDCAccessToken,
       });
 
       await getPrivateTodos();
@@ -146,7 +147,7 @@ const OIDCTodos = () => {
   };
 
   React.useEffect(() => {
-    if (!OIDCAccessToken) getOIDCAccessToken();
+    // if (!OIDCAccessToken) getOIDCAccessToken();
   }, []);
 
   React.useEffect(() => {
@@ -219,14 +220,10 @@ const OIDCTodos = () => {
         <h2>Private Todos (OIDC)</h2>
 
         <div style={{ marginBottom: "1rem" }}>
-          <button onClick={loginWithOIDC}>Sign In With OIDC</button>
-          <button
-            onClick={() => {
-              Auth.signOut({ global: true });
-            }}
-          >
-            Sign Out
+          <button style={{ marginRight: "1rem" }} onClick={loginWithOIDC}>
+            Sign In With OIDC
           </button>
+          <button onClick={logoutWithOIDC}>Logout</button>
         </div>
 
         <form style={{ marginBottom: "1rem" }} onSubmit={createNewPrivateTodo}>
@@ -260,4 +257,4 @@ const OIDCTodos = () => {
   );
 };
 
-export default OIDCTodos;
+export default withAuthenticationRequired(OIDCTodos, {});

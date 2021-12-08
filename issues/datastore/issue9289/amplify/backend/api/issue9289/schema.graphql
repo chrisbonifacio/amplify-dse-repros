@@ -8,3 +8,28 @@ type Todo @model {
   username: String
   title: String!
 }
+
+type User @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  username: String!
+  email: String!
+  posts: [Post] @hasMany
+  profile: Profile @hasOne
+}
+
+type Profile @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  user: User @belongsTo
+  bio: String
+  website: String
+  avatar: String
+}
+
+type Post
+  @model
+  @auth(rules: [{ allow: owner }, { allow: public, operations: [read] }]) {
+  id: ID!
+  user: User @belongsTo
+  title: String!
+  content: String!
+}

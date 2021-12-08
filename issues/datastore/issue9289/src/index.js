@@ -2,12 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { Amplify } from "aws-amplify";
+import { Amplify, AuthModeStrategyType } from "aws-amplify";
 import config from "./aws-exports";
 import { AmplifyProvider } from "@aws-amplify/ui-react";
 
-Amplify.configure(config);
-Amplify.Logger.LOG_LEVEL = "DEBUG";
+Amplify.configure({
+  ...config,
+  DataStore: {
+    authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>

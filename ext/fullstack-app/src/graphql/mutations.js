@@ -378,6 +378,7 @@ export const createPrivateTodo = /* GraphQL */ `
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -392,6 +393,7 @@ export const updatePrivateTodo = /* GraphQL */ `
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -406,6 +408,7 @@ export const deletePrivateTodo = /* GraphQL */ `
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;

@@ -229,6 +229,7 @@ export const getPrivateTodo = /* GraphQL */ `
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -245,6 +246,7 @@ export const listPrivateTodos = /* GraphQL */ `
         completed
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

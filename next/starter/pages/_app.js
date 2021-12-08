@@ -12,28 +12,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-MyApp.getInitialProps = async ({ ctx }) => {
-  let user = null;
-
-  try {
-    const { Auth } = withSSRContext(ctx);
-
-    user = await Auth.currentAuthenticatedUser();
-
-    console.log({ user });
-
-    return {
-      pageProps: {
-        user,
-      },
-    };
-  } catch (error) {
-    return {
-      pageProps: {
-        error,
-      },
-    };
-  }
-};
-
 export default MyApp;

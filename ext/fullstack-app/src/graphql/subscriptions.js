@@ -323,35 +323,38 @@ export const onDeleteIAMTodo = /* GraphQL */ `
   }
 `;
 export const onCreatePrivateTodo = /* GraphQL */ `
-  subscription OnCreatePrivateTodo {
-    onCreatePrivateTodo {
+  subscription OnCreatePrivateTodo($owner: String) {
+    onCreatePrivateTodo(owner: $owner) {
       id
       title
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdatePrivateTodo = /* GraphQL */ `
-  subscription OnUpdatePrivateTodo {
-    onUpdatePrivateTodo {
+  subscription OnUpdatePrivateTodo($owner: String) {
+    onUpdatePrivateTodo(owner: $owner) {
       id
       title
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeletePrivateTodo = /* GraphQL */ `
-  subscription OnDeletePrivateTodo {
-    onDeletePrivateTodo {
+  subscription OnDeletePrivateTodo($owner: String) {
+    onDeletePrivateTodo(owner: $owner) {
       id
       title
       completed
       createdAt
       updatedAt
+      owner
     }
   }
 `;

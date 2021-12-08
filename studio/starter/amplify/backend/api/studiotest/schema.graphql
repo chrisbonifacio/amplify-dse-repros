@@ -1,0 +1,5 @@
+type BodyArea @model @auth(rules: [{allow: public, operations: [read]}, {allow: private}, {allow: groups, groups: ["admin"], operations: [read]}]) {
+  id: ID!
+  key: String
+  name: String
+}
