@@ -1,0 +1,65 @@
+input CreateCustomersInput {
+  id: Int!
+  name: String!
+  phone: String!
+  email: String!
+}
+
+type Customers {
+  id: Int!
+  name: String!
+  phone: String!
+  email: String!
+}
+
+input UpdateCustomersInput {
+  id: Int!
+  name: String
+  phone: String
+  email: String
+}
+
+input CreateOrdersInput {
+  id: Int!
+  customerId: Int!
+  orderDate: AWSDateTime
+}
+
+type Orders {
+  id: Int!
+  customerId: Int!
+  orderDate: AWSDateTime
+}
+
+input UpdateOrdersInput {
+  id: Int!
+  customerId: Int
+  orderDate: AWSDateTime
+}
+
+type Mutation {
+  deleteCustomers(id: Int!): Customers
+  createCustomers(createCustomersInput: CreateCustomersInput!): Customers
+  updateCustomers(updateCustomersInput: UpdateCustomersInput!): Customers
+  deleteOrders(id: Int!): Orders
+  createOrders(createOrdersInput: CreateOrdersInput!): Orders
+  updateOrders(updateOrdersInput: UpdateOrdersInput!): Orders
+}
+
+type Query {
+  getCustomers(id: Int!): Customers
+  listCustomerss: [Customers]
+  getOrders(id: Int!): Orders
+  listOrderss: [Orders]
+}
+
+type Subscription {
+  onCreateCustomers: Customers @aws_subscribe(mutations: ["createCustomers"])
+  onCreateOrders: Orders @aws_subscribe(mutations: ["createOrders"])
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

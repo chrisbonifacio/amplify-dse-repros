@@ -40,15 +40,16 @@ function App() {
   }
 
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await DataStore.query(Todo);
-        console.log(res);
-        setTodos(res);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     const res = await DataStore.query(Todo);
+    //     console.log(res);
+    //     setTodos(res);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // })();
+    DataStore.start();
   }, []);
 
   useEffect(() => {

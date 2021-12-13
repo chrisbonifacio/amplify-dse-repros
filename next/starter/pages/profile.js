@@ -30,7 +30,6 @@ export const getServerSideProps = async ({ req }) => {
 };
 
 const Profile = ({ userProp }) => {
-  console.log({ userProp });
   const [user, setUser] = React.useState(JSON.parse(userProp));
   const [creds, setCreds] = React.useState({
     username: "",

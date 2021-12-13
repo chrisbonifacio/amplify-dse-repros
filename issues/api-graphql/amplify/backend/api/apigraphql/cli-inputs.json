@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "apigraphql",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/cbonifacio/Documents/work/amplify-dse-repros/issues/api-graphql/amplify/backend/api/apigraphql/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authapigraphqlc2f7fcf7"
+    }
+  }
+}

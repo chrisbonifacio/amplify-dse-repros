@@ -5,19 +5,16 @@
     "serviceName": "AppSync",
     "gqlSchemaPath": "/Users/cbonifacio/Documents/work/amplify-dse-repros/studio/starter/amplify/backend/api/studiotest/schema.graphql",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authstudiotest"
     },
     "additionalAuthTypes": [
       {
-        "mode": "AWS_IAM"
-      },
-      {
-        "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authstudiotest"
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2021-12-20T20:19:37.947Z",
+        "keyDescription": ""
       }
-    ],
-    "conflictResolution": {}
+    ]
   }
 }

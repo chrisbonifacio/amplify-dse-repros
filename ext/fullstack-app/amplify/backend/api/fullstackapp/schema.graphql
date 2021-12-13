@@ -62,3 +62,9 @@ type PrivateTodo
   title: String!
   completed: Boolean!
 }
+
+type Resource @model @auth(rules: [{ allow: owner }]) {
+  id: ID! @auth(rules: [{ allow: groups, groups: ["AllowedFinancials"] }])
+  actualHourlyRate: Float
+    @auth(rules: [{ allow: groups, groups: ["AllowedFinancials"] }])
+}

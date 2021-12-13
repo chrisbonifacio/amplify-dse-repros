@@ -31,6 +31,10 @@
           "DOMAINALLOWLIST": "gmail.com",
           "deploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
           "s3Key": "amplify-builds/fullstackappbea409caPreSignup-5134504f3148496a4a6e-build.zip"
+        },
+        "fullstackapp4ea82db1": {
+          "deploymentBucketName": "amplify-fullstackapp-dev-165440-deployment",
+          "s3Key": "amplify-builds/fullstackapp4ea82db1-41653838416b4a6f7630-build.zip"
         }
       }
     }
