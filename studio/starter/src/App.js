@@ -73,18 +73,7 @@ function App() {
         return (
           <div className="App">
             <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
+              Welcome, {user?.attributes?.email}
               <button onClick={signOut}>Sign Out</button>
               <form onSubmit={saveUser}>
                 <h2>Create User</h2>
@@ -104,9 +93,7 @@ function App() {
                 />
                 <input type="submit" />
               </form>
-
               <h2>Users</h2>
-
               <div style={{ display: "flex" }}>
                 {users?.map((user) => {
                   return (
