@@ -1,0 +1,21 @@
+{
+  "name": "issue9355",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@aws-amplify/ui-react": "^2.1.4",
+    "aws-amplify": "^4.3.10",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7"
+  }
+}
