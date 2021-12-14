@@ -81,6 +81,7 @@ function App() {
             name="title"
             value={title}
             onChange={handleChange}
+            placeholder="Add a todo"
           />
           <input type="submit" />
         </form>
@@ -88,6 +89,7 @@ function App() {
       <div
         style={{
           display: "flex",
+          flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "center",
         }}
