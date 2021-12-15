@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Authenticator } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
+import { API, Auth, graphqlOperation } from "aws-amplify";
 import { listUsers } from "./graphql/queries";
 import { createUser, deleteUser } from "./graphql/mutations";
 
@@ -27,15 +27,14 @@ function App() {
     e.preventDefault();
 
     try {
-      const res = await API.graphql({
-        query: createUser,
-        variables: {
+      const res = await API.graphql(
+        graphqlOperation(createUser, {
           input: {
             username,
             name,
           },
-        },
-      });
+        })
+      );
 
       setUsername("");
       setName("");
@@ -64,61 +63,67 @@ function App() {
     }
   };
 
+  // const signOut = () => {
+  //   Auth.signOut();
+  // };
+
   useEffect(() => {
     fetchUsers();
   }, []);
   return (
-    <Authenticator>
-      {({ signOut, user }) => {
-        return (
-          <div className="App">
-            <header className="App-header">
-              Welcome, {user?.attributes?.email}
-              <button onClick={signOut}>Sign Out</button>
-              <form onSubmit={saveUser}>
-                <h2>Create User</h2>
-                <input
-                  type="text"
-                  placeholder="username"
-                  name="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="name"
-                  name="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <input type="submit" />
-              </form>
-              <h2>Users</h2>
-              <div style={{ display: "flex" }}>
-                {users?.map((user) => {
-                  return (
-                    <div
-                      style={{
-                        border: "1px solid #fff",
-                        padding: "1rem",
-                        margin: "1rem",
-                      }}
-                      key={user.id}
-                    >
-                      <h2>{user.username}</h2>
-                      <p>{user.name}</p>
-                      <button onClick={() => removeUser(user.id)}>
-                        Delete
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-            </header>
-          </div>
-        );
-      }}
-    </Authenticator>
+    <div>
+      <Authenticator>
+        {({ signOut, user }) => {
+          return (
+            <div className="App">
+              <header className="App-header">
+                Welcome, {user?.attributes?.email}
+                <button onClick={signOut}>Sign Out</button>
+                <form onSubmit={saveUser}>
+                  <h2>Create User</h2>
+                  <input
+                    type="text"
+                    placeholder="username"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="name"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <input type="submit" />
+                </form>
+                <h2>Users</h2>
+                <div style={{ display: "flex" }}>
+                  {users?.map((user) => {
+                    return (
+                      <div
+                        style={{
+                          border: "1px solid #fff",
+                          padding: "1rem",
+                          margin: "1rem",
+                        }}
+                        key={user.id}
+                      >
+                        <h2>{user.username}</h2>
+                        <p>{user.name}</p>
+                        <button onClick={() => removeUser(user.id)}>
+                          Delete
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </header>
+            </div>
+          );
+        }}
+      </Authenticator>
+    </div>
   );
 }
 

@@ -95,8 +95,13 @@ function App() {
         }}
       >
         {todos.map((todo) => (
-          <div key={todo.id}>
-            <pre>{JSON.stringify(todo, null, 2)}</pre>
+          <div style={{ margin: "1rem" }} key={todo.id}>
+            <p>
+              <strong>Title: </strong> {todo.title}
+            </p>
+            <p>
+              <strong>Completed:</strong> {JSON.stringify(todo.completed)}
+            </p>
             <button onClick={() => completeTodo(todo.id)}>
               Toggle Complete
             </button>

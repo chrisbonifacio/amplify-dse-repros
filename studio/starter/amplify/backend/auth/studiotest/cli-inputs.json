@@ -45,8 +45,10 @@
     "userPoolGroups": false,
     "userPoolGroupList": [],
     "adminQueries": false,
-    "thirdPartyAuth": false,
-    "authProviders": [],
+    "thirdPartyAuth": true,
+    "authProviders": [
+      "graph.facebook.com"
+    ],
     "usernameCaseSensitive": false,
     "useEnabledMfas": true,
     "authRoleArn": {
@@ -66,10 +68,17 @@
     "hostedUI": true,
     "hostedUIDomainName": "tibxlj6drokt",
     "authProvidersUserPool": [
-      "Facebook"
+      "Facebook",
+      "Google",
+      "LoginWithAmazon"
     ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
-    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"392144915647724\",\"client_secret\":\"cfacbcd7d17526c9d8a133c1757d5d11\"}]",
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}},{\"ProviderName\":\"LoginWithAmazon\",\"authorize_scopes\":\"profile profile:user_id\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"user_id\"}}]",
+    "triggers": {},
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "facebookAppId": "392144915647724",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000\",\"https://staging.d13c7lh58sja73.amplifyapp.com/\"],\"LogoutURLs\":[\"http://localhost:3000\",\"https://staging.d13c7lh58sja73.amplifyapp.com/\"]}"
   }
 }

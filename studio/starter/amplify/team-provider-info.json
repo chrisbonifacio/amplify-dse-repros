@@ -13,7 +13,9 @@
     },
     "categories": {
       "auth": {
-        "studiotest": {}
+        "studiotest": {
+          "facebookAppId": "392144915647724"
+        }
       },
       "hosting": {
         "amplifyhosting": {
