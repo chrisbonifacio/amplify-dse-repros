@@ -1,0 +1,13 @@
+{
+    "resourceName": "transcriptionce3fad64",
+    "convertPolicyName": "transcriptionPolicyce3fad64",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "convertType": "transcription",
+    "language": "en-US",
+    "access": "authAndGuest"
+}
