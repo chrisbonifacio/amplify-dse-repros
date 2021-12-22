@@ -1,0 +1,77 @@
+type Unit
+  @model
+  @auth(rules: [{ allow: public }, { allow: private, operations: [read] }]) {
+  id: ID!
+  name: String
+  isActive: Boolean
+}
+
+type MeasureHistory @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  date: AWSDate
+  value: String
+  measureID: ID @index(name: "byMeasure")
+}
+
+type Measure
+  @model
+  @auth(rules: [{ allow: public }, { allow: private, operations: [read] }]) {
+  id: ID!
+  name: String
+  measureType: String
+  measureHistories: [MeasureHistory]
+    @hasMany(indexName: "byMeasure", fields: ["id"])
+}
+
+type History @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  date: String
+  weightLb: String
+  weightKg: String
+  exerciseID: ID @index(name: "byExercise")
+}
+
+type Muscle
+  @model
+  @auth(rules: [{ allow: public }, { allow: private, operations: [read] }]) {
+  id: ID!
+  name: String
+  category: String
+  image_url: String
+  exercises: [Exercise] @manyToMany(relationName: "ExerciseMuscle")
+}
+
+type Exercise @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String
+  routines: [Routine] @manyToMany(relationName: "RoutineExercise")
+  muscles: [Muscle] @manyToMany(relationName: "ExerciseMuscle")
+  histories: [History] @hasMany(indexName: "byExercise", fields: ["id"])
+}
+
+type Routine @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String
+  planName: String
+  exercises: [Exercise] @manyToMany(relationName: "RoutineExercise")
+}
+
+type LibraryRoutine
+  @model
+  @auth(rules: [{ allow: public }, { allow: private, operations: [read] }]) {
+  id: ID!
+  name: String
+  planName: String
+  libraryExercises: [LibraryExercise]
+    @manyToMany(relationName: "LibraryRoutineLibraryExercise")
+}
+
+type LibraryExercise
+  @model
+  @auth(rules: [{ allow: public }, { allow: private, operations: [read] }]) {
+  id: ID!
+  name: String
+  categoryName: String
+  libraryroutines: [LibraryRoutine]
+    @manyToMany(relationName: "LibraryRoutineLibraryExercise")
+}

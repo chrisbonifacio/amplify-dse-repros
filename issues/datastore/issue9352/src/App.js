@@ -4,6 +4,8 @@ import { Todo } from "./models";
 import awsconfig from "./aws-exports";
 Amplify.configure(awsconfig);
 
+Amplify.Logger.LOG_LEVEL = "DEBUG";
+
 function App() {
   const [title, setTitle] = useState("");
   const [todos, setTodos] = useState([]);
@@ -29,6 +31,12 @@ function App() {
       const original = await DataStore.query(Todo, id);
       await DataStore.save(
         Todo.copyOf(original, (updated) => {
+          if (!original.completed) {
+            updated.title = `${original.title} (completed)`;
+          } else {
+            updated.title = original.title.replace(" (completed)", "");
+          }
+
           updated.completed = !original.completed;
         })
       );
@@ -97,10 +105,19 @@ function App() {
         {todos.map((todo) => (
           <div style={{ margin: "1rem" }} key={todo.id}>
             <p>
+              <strong>ID: </strong> {todo.id}
+            </p>
+            <p>
               <strong>Title: </strong> {todo.title}
             </p>
             <p>
               <strong>Completed:</strong> {JSON.stringify(todo.completed)}
+            </p>
+            <p>
+              <strong>Created:</strong> {JSON.stringify(todo.createdAt)}
+            </p>
+            <p>
+              <strong>Updated:</strong> {JSON.stringify(todo.updatedAt)}
             </p>
             <button onClick={() => completeTodo(todo.id)}>
               Toggle Complete

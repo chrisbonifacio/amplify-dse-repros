@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Amplify } from "aws-amplify";
-import { AmplifyProvider } from "@aws-amplify/ui-react";
 import awsConfig from "./aws-exports";
+
+Amplify.Logger.LOG_LEVEL = "DEBUG";
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
@@ -41,9 +42,7 @@ Amplify.configure(updatedAwsConfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <AmplifyProvider>
-      <App />
-    </AmplifyProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
