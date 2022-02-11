@@ -1,81 +1,12 @@
 import { useState, useEffect } from "react";
-import { Amplify, DataStore } from "aws-amplify";
-import { initSchema } from "@aws-amplify/datastore";
+import { Amplify, DataStore, Predicates } from "aws-amplify";
+import { User } from "./models";
 
-Amplify.configure({
-  aws_appsync_graphqlEndpoint: "https://fake-appsync-endpoint/graphql",
-});
+import awsconfig from "./aws-exports";
 
-const { User } = initSchema({
-  models: {
-    User: {
-      name: "User",
-      fields: {
-        id: {
-          name: "id",
-          isArray: false,
-          type: "ID",
-          isRequired: true,
-          attributes: [],
-        },
-        firstName: {
-          name: "firstName",
-          isArray: false,
-          type: "String",
-          isRequired: false,
-          attributes: [],
-        },
-        lastName: {
-          name: "lastName",
-          isArray: false,
-          type: "String",
-          isRequired: false,
-          attributes: [],
-        },
-        createdAt: {
-          name: "createdAt",
-          isArray: false,
-          type: "AWSDateTime",
-          isRequired: false,
-          attributes: [],
-          isReadOnly: true,
-        },
-        updatedAt: {
-          name: "updatedAt",
-          isArray: false,
-          type: "AWSDateTime",
-          isRequired: false,
-          attributes: [],
-          isReadOnly: true,
-        },
-      },
-      syncable: true,
-      pluralName: "Users",
-      attributes: [
-        {
-          type: "model",
-          properties: {},
-        },
-        {
-          type: "auth",
-          properties: {
-            rules: [
-              {
-                allow: "public",
-                operations: ["create", "update", "delete", "read"],
-              },
-            ],
-          },
-        },
-      ],
-    },
-  },
-  enums: {},
-  nonModels: {},
-  version: "f6252c821249b6b1abda9fb24481c5a4",
-});
+Amplify.configure(awsconfig);
 
-function DataStoreRepro() {
+function DataStoreRepro({ user }) {
   const [withCriteria, setWithCriteria] = useState();
   const [withoutCriteria, setWithoutCriteria] = useState();
 
@@ -109,18 +40,23 @@ function DataStoreRepro() {
   }, []);
 
   const updateRecord = async () => {
-    const original = (await DataStore.query(User))[0];
+    const original = await DataStore.query(User, user.id);
     await DataStore.save(
       User.copyOf(original, (updated) => {
-        updated.lastName = "Updated again";
+        updated.lastName = "testing update";
       })
     );
+  };
+
+  const clearUserRecords = async () => {
+    await DataStore.delete(User, Predicates.ALL);
   };
 
   return (
     <div>
       <h5>DataStore Criteria Bug Repro</h5>
       <button onClick={updateRecord}>Update User</button>
+      <button onClick={clearUserRecords}>Clear Users</button>
       <div style={{ display: "flex" }}>
         {withCriteria && (
           <pre>withCriteria: {JSON.stringify(withCriteria, null, 2)}</pre>
@@ -135,15 +71,29 @@ function DataStoreRepro() {
 }
 
 export default function App() {
+  const [user, setUser] = useState();
   const [isInitialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const initializeTestState = async () => {
       // DataStore.clear() doesn't appear to reliably work.
-      indexedDB.deleteDatabase("amplify-datastore");
-      await DataStore.save(
-        new User({ firstName: "Test User", lastName: "Initial" })
-      );
+
+      let savedUser;
+
+      try {
+        savedUser = (await DataStore.query(User))[0];
+        setUser(savedUser);
+      } catch (error) {
+        console.log(error);
+      }
+
+      if (!savedUser) {
+        const newUser = await DataStore.save(
+          new User({ firstName: "Test User", lastName: "Initial" })
+        );
+        setUser(newUser);
+      }
+
       setInitialized(true);
     };
 
@@ -154,5 +104,5 @@ export default function App() {
     return null;
   }
 
-  return <DataStoreRepro />;
+  return <DataStoreRepro user={user} />;
 }
