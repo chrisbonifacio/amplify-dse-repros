@@ -1,0 +1,8 @@
+type Notebook @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  title: String!
+  description: String
+  color: String
+  editors: [String!]
+  readers: [String!]
+}

@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "issue9279e9ef41b2e9ef41b2": {}
+        "issue9279e9ef41b2e9ef41b2": {},
+        "userPoolGroups": {}
       }
     }
   }

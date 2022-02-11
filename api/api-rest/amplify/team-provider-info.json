@@ -1,0 +1,35 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-apirest-dev-132850-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123710206839:role/amplify-apirest-dev-132850-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123710206839:role/amplify-apirest-dev-132850-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-apirest-dev-132850-deployment",
+      "UnauthRoleName": "amplify-apirest-dev-132850-unauthRole",
+      "StackName": "amplify-apirest-dev-132850",
+      "StackId": "arn:aws:cloudformation:us-east-1:123710206839:stack/amplify-apirest-dev-132850/7f0807b0-788c-11ec-8732-12b852056fdd",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-apirest-dev-132850-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "auth": {
+        "undefined": {},
+        "apirest7d1c9de0": {}
+      },
+      "function": {
+        "apirest04aa7f2d": {
+          "deploymentBucketName": "amplify-apirest-dev-132850-deployment",
+          "s3Key": "amplify-builds/apirest04aa7f2d-483649587135454e7932-build.zip"
+        },
+        "bookAdminHandler": {
+          "deploymentBucketName": "amplify-apirest-dev-132850-deployment",
+          "s3Key": "amplify-builds/bookAdminHandler-54545755695065743955-build.zip"
+        },
+        "bookGuestHandler": {
+          "deploymentBucketName": "amplify-apirest-dev-132850-deployment",
+          "s3Key": "amplify-builds/bookGuestHandler-613954597138734a705a-build.zip"
+        }
+      }
+    }
+  }
+}

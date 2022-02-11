@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-issue9513-dev-111002-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123710206839:role/amplify-issue9513-dev-111002-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123710206839:role/amplify-issue9513-dev-111002-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-issue9513-dev-111002-deployment",
+      "UnauthRoleName": "amplify-issue9513-dev-111002-unauthRole",
+      "StackName": "amplify-issue9513-dev-111002",
+      "StackId": "arn:aws:cloudformation:us-east-1:123710206839:stack/amplify-issue9513-dev-111002/6cf40790-7ec2-11ec-9ad8-0e0b4b990c91"
+    },
+    "categories": {
+      "auth": {
+        "issue9513c4d5fec7": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizer75c70f3a": {
+          "deploymentBucketName": "amplify-issue9513-dev-111002-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizer75c70f3a-506637584a4843412f49-build.zip"
+        }
+      }
+    }
+  }
+}

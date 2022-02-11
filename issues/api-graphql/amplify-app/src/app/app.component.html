@@ -1,0 +1,25 @@
+<amplify-authenticator>
+  <div>
+    IssueComments App
+    <amplify-sign-out></amplify-sign-out>
+  </div>
+  <!-- previous code -->
+  <div class="form-body">
+    <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
+      <div>
+        <label>Author: </label>
+        <input type="text" formControlName="author" autocomplete="off" />
+      </div>
+      <div>
+        <label>Comment: </label>
+        <input type="text" formControlName="comment" autocomplete="off" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  <div *ngFor="let issueComment of IssueComments">
+    <div>Author: {{ issueComment.author }}</div>
+    <div>Comment: {{ issueComment.comment }}</div>
+  </div>
+</amplify-authenticator>

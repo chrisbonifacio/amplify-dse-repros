@@ -1,0 +1,111 @@
+type Transcription
+  @model
+  @auth(
+    rules: [
+      { allow: private, provider: iam }
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  author: String!
+    @index(
+      name: "ByOwnerUpdated"
+      queryField: "byOwnerUpdated"
+      sortKeyFields: ["dateLastUpdated"]
+    )
+  coverage: Float
+  dateLastUpdated: String!
+  userLastUpdated: String
+  length: Float
+  issues: String
+  comments: String
+  tags: String
+  source: String
+  index: String
+  title: String! @index(name: "ByTitle", queryField: "byTitle")
+  type: String!
+  isPrivate: Boolean
+  disableAnalyzer: Boolean
+  editor: [TranscriptionEditor]
+    @hasMany(indexName: "byTranscription", fields: ["id"])
+}
+
+type Region
+  @model
+  @auth(
+    rules: [
+      { allow: private, provider: iam }
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  start: Float!
+  end: Float!
+  text: String!
+  issues: String
+  isNote: Boolean
+  comments: String
+  translation: String
+  dateLastUpdated: String!
+  userLastUpdated: String!
+  transcriptionId: String!
+    @index(name: "ByTranscription", queryField: "byTranscription")
+}
+
+type Cursor
+  @model
+  @auth(
+    rules: [
+      { allow: private, provider: iam }
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey(sortKeyFields: ["user"])
+  user: String!
+  cursor: String!
+}
+
+type RegionLock
+  @model
+  @auth(
+    rules: [
+      { allow: private, provider: iam }
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey(sortKeyFields: ["transcriptionId"])
+  transcriptionId: String!
+  deleteTime: AWSTimestamp!
+  user: String!
+}
+
+type Editor
+  @model
+  @auth(
+    rules: [
+      { allow: private, provider: iam }
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ) {
+  email: ID!
+  username: ID! @primaryKey
+  transcriptions: [TranscriptionEditor]
+    @hasMany(indexName: "byEditor", fields: ["username"])
+}
+
+type TranscriptionEditor
+  @model(queries: null)
+  @auth(
+    rules: [
+      { allow: private, provider: iam }
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  transcriptionId: ID!
+    @index(name: "byTranscription", sortKeyFields: ["username"])
+  username: ID! @index(name: "byEditor", sortKeyFields: ["transcriptionId"])
+  transcription: Transcription! @belongsTo(fields: ["transcriptionId"])
+  editor: Editor! @belongsTo(fields: ["username"])
+}
+   

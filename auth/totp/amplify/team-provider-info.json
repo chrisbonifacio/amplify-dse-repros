@@ -1,0 +1,31 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-totpsetup-staging-194904-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123710206839:role/amplify-totpsetup-staging-194904-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123710206839:role/amplify-totpsetup-staging-194904-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-totpsetup-staging-194904-deployment",
+      "UnauthRoleName": "amplify-totpsetup-staging-194904-unauthRole",
+      "StackName": "amplify-totpsetup-staging-194904",
+      "StackId": "arn:aws:cloudformation:us-east-1:123710206839:stack/amplify-totpsetup-staging-194904/37d5ee20-6360-11ec-8172-0a3f429129db",
+      "AmplifyAppId": "d9jzf0uaom4em"
+    },
+    "categories": {
+      "auth": {
+        "totpsetup": {
+          "userPoolId": "us-east-1_IUFM4EZfJ",
+          "userPoolName": "totp",
+          "webClientId": "194f2jumcdn0fiterp3lcr26o0",
+          "nativeClientId": "1jdj2rf4an7pe5qsgls59ck49f"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d9jzf0uaom4em",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}

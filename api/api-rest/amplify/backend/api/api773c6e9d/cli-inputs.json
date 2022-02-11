@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "paths": {
+    "/hello": {
+      "name": "/hello",
+      "lambdaFunction": "apirest04aa7f2d",
+      "permissions": {
+        "groups": {
+          "admin": [
+            "create",
+            "read",
+            "update",
+            "delete"
+          ]
+        },
+        "setting": "private"
+      }
+    }
+  }
+}
