@@ -1,0 +1,13 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+type IssueComment
+  @model
+  @auth(rules: [{ allow: groups, groups: ["admin", "practitioner"] }]) {
+  # @key(name: "byIssue", fields: ["issueID"])
+  id: ID!
+  issueID: ID! @index(name: "byIssue")
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  author: String
+  comment: String
+}

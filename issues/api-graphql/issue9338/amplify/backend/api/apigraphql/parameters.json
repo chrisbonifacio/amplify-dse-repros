@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "apigraphql",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authapigraphql31d4c188",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

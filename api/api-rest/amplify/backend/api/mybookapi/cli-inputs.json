@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "paths": {
+    "/admin": {
+      "name": "/admin",
+      "lambdaFunction": "bookAdminHandler",
+      "permissions": {
+        "groups": {
+          "admin": [
+            "create",
+            "read",
+            "update",
+            "delete"
+          ]
+        },
+        "setting": "private"
+      }
+    },
+    "/guest": {
+      "name": "/guest",
+      "lambdaFunction": "bookGuestHandler",
+      "permissions": {
+        "groups": {
+          "guest": [
+            "create",
+            "read",
+            "update",
+            "delete"
+          ]
+        },
+        "setting": "private"
+      }
+    }
+  }
+}

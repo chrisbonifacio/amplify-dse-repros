@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2022-01-28T20:04:51.207Z",
+      "keyDescription": ""
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ],
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      },
+      "perModelResolutionStrategy": [
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
+          "entityName": "Region"
+        }
+      ]
+    },
+    "apiName": "maxconflicts",
+    "gqlSchemaPath": "/Users/cbonifacio/Documents/work/amplify-dse-repros/issues/datastore/maxconflicts/amplify/backend/api/maxconflicts/schema.graphql"
+  }
+}

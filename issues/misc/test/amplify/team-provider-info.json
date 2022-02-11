@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-apigraphql-dev-151449-authRole",
+      "UnauthRoleArn": "arn:aws:iam::123710206839:role/amplify-apigraphql-dev-151449-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::123710206839:role/amplify-apigraphql-dev-151449-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-apigraphql-dev-151449-deployment",
+      "UnauthRoleName": "amplify-apigraphql-dev-151449-unauthRole",
+      "StackName": "amplify-apigraphql-dev-151449",
+      "StackId": "arn:aws:cloudformation:us-east-1:123710206839:stack/amplify-apigraphql-dev-151449/5445f520-5c51-11ec-80df-128f32cab2cf",
+      "AmplifyAppId": "d32vqddzjiccil"
+    }
+  }
+}
