@@ -1,12 +1,90 @@
 import { useState, useEffect } from "react";
 import { Amplify, DataStore, Predicates } from "aws-amplify";
-import { User } from "./models";
+import { initSchema } from "@aws-amplify/datastore";
 
-import awsconfig from "./aws-exports";
+const awsmobile = {
+  aws_project_region: "us-east-1",
+  aws_appsync_graphqlEndpoint:
+    "https://xgmqp4ckgndcnl4hg7qqezvrfu.appsync-api.us-east-1.amazonaws.com/graphql",
+  aws_appsync_region: "us-east-1",
+  aws_appsync_authenticationType: "API_KEY",
+  aws_appsync_apiKey: "da2-7gv2ywmjhvcwzjkqrmdcabuuzq",
+};
 
-Amplify.configure(awsconfig);
+Amplify.configure(awsmobile);
 
-function DataStoreRepro({ user }) {
+Amplify.Logger.LOG_LEVEL = "DEBUG";
+
+const { User } = initSchema({
+  models: {
+    User: {
+      name: "User",
+      fields: {
+        id: {
+          name: "id",
+          isArray: false,
+          type: "ID",
+          isRequired: true,
+          attributes: [],
+        },
+        firstName: {
+          name: "firstName",
+          isArray: false,
+          type: "String",
+          isRequired: false,
+          attributes: [],
+        },
+        lastName: {
+          name: "lastName",
+          isArray: false,
+          type: "String",
+          isRequired: false,
+          attributes: [],
+        },
+        createdAt: {
+          name: "createdAt",
+          isArray: false,
+          type: "AWSDateTime",
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+        updatedAt: {
+          name: "updatedAt",
+          isArray: false,
+          type: "AWSDateTime",
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+      },
+      syncable: true,
+      pluralName: "Users",
+      attributes: [
+        {
+          type: "model",
+          properties: {},
+        },
+        {
+          type: "auth",
+          properties: {
+            rules: [
+              {
+                allow: "public",
+                operations: ["create", "update", "delete", "read"],
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  enums: {},
+  nonModels: {},
+  version: "f6252c821249b6b1abda9fb24481c5a4",
+});
+
+function DataStoreRepro() {
   const [withCriteria, setWithCriteria] = useState();
   const [withoutCriteria, setWithoutCriteria] = useState();
 
@@ -14,23 +92,20 @@ function DataStoreRepro({ user }) {
     const subscriptionWithCriteria = DataStore.observeQuery(User, (u) =>
       u.firstName("eq", "Test User")
     ).subscribe(
-      (snapshot) =>
-        setWithCriteria({
-          items: snapshot.items,
-          isLoading: false,
-          isSynced: snapshot.isSynced,
-        }),
-      (error) => setWithCriteria({ items: [], error, isLoading: false })
+      (snapshot) => {
+        console.log({ withCriteria: { snapshot } });
+
+        setWithCriteria({ items: snapshot.items, isLoading: false });
+      },
+      (error) => console.log({ error })
     );
 
     const subscriptionWithoutCriteria = DataStore.observeQuery(User).subscribe(
-      (snapshot) =>
-        setWithoutCriteria({
-          items: snapshot.items,
-          isLoading: false,
-          isSynced: snapshot.isSynced,
-        }),
-      (error) => setWithoutCriteria({ items: [], error, isLoading: false })
+      (snapshot) => {
+        console.log({ withoutCriteria: { snapshot } });
+        setWithoutCriteria({ items: snapshot.items, isLoading: false });
+      },
+      (error) => console.log({ error })
     );
 
     return () => {
@@ -40,30 +115,27 @@ function DataStoreRepro({ user }) {
   }, []);
 
   const updateRecord = async () => {
-    const original = await DataStore.query(User, user.id);
+    const original = (await DataStore.query(User))[0];
+
     await DataStore.save(
       User.copyOf(original, (updated) => {
-        updated.lastName = "testing update";
+        updated.firstName = "Updated";
       })
     );
-  };
-
-  const clearUserRecords = async () => {
-    await DataStore.delete(User, Predicates.ALL);
+    console.log("Updated user");
   };
 
   return (
     <div>
       <h5>DataStore Criteria Bug Repro</h5>
       <button onClick={updateRecord}>Update User</button>
-      <button onClick={clearUserRecords}>Clear Users</button>
-      <div style={{ display: "flex" }}>
+      <div>
         {withCriteria && (
-          <pre>withCriteria: {JSON.stringify(withCriteria, null, 2)}</pre>
+          <code>withCriteria: {JSON.stringify(withCriteria)}</code>
         )}
         <br />
         {withoutCriteria && (
-          <pre>withoutCriteria: {JSON.stringify(withoutCriteria, null, 2)}</pre>
+          <code>withoutCriteria: {JSON.stringify(withoutCriteria)}</code>
         )}
       </div>
     </div>
@@ -71,29 +143,14 @@ function DataStoreRepro({ user }) {
 }
 
 export default function App() {
-  const [user, setUser] = useState();
   const [isInitialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const initializeTestState = async () => {
-      // DataStore.clear() doesn't appear to reliably work.
-
-      let savedUser;
-
-      try {
-        savedUser = (await DataStore.query(User))[0];
-        setUser(savedUser);
-      } catch (error) {
-        console.log(error);
-      }
-
-      if (!savedUser) {
-        const newUser = await DataStore.save(
-          new User({ firstName: "Test User", lastName: "Initial" })
-        );
-        setUser(newUser);
-      }
-
+      await DataStore.delete(User, Predicates.ALL);
+      await DataStore.save(
+        new User({ firstName: "Test User", lastName: "Initial" })
+      );
       setInitialized(true);
     };
 
@@ -104,5 +161,5 @@ export default function App() {
     return null;
   }
 
-  return <DataStoreRepro user={user} />;
+  return <DataStoreRepro />;
 }

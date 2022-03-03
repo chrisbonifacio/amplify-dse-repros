@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "auth": {
+      "starter32a651c2": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "api": {
+      "starter": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

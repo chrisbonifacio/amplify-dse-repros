@@ -1,0 +1,36 @@
+{
+  "name": "issue9599",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.16.1",
+    "@react-native-community/netinfo": "^8.0.0",
+    "@react-native-picker/picker": "^2.2.1",
+    "amazon-cognito-identity-js": "^5.2.6",
+    "aws-amplify": "^4.3.14",
+    "aws-amplify-react-native": "^6.0.2",
+    "react": "17.0.2",
+    "react-native": "0.67.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@expo/metro-config": "^0.3.11",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "7.14.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "starter",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/cbonifacio/Documents/work/amplify-dse-repros/next/starter/amplify/backend/api/starter/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-02-28T18:28:55.492Z",
+      "keyDescription": ""
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authstarter32a651c2"
+      },
+      {
+        "mode": "AWS_IAM"
+      },
+      {
+        "mode": "OPENID_CONNECT",
+        "openIDProviderName": "auth0",
+        "openIDIssuerURL": "https://www.auth0.com/",
+        "openIDClientID": "",
+        "openIDAuthTTL": "123456",
+        "openIDIatTTL": "123456"
+      },
+      {
+        "mode": "AWS_LAMBDA",
+        "lambdaFunction": "graphQlLambdaAuthorizer64cabe43",
+        "ttlSeconds": "300"
+      }
+    ],
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
+  }
+}
