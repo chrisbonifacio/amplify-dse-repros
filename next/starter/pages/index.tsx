@@ -22,7 +22,8 @@ import * as styles from "../styles/Home.module.css";
 import "@aws-amplify/ui-react/styles.css";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { UpdateTodoInput } from "../src/API";
-import { Todo as TodoModel } from "../src/models";
+import { Todo } from "../src/models";
+import { GetServerSideProps } from "next";
 
 const updateTodo = async (input: UpdateTodoInput) => {
   const res = await API.graphql({
@@ -46,24 +47,26 @@ const updateTodo = async (input: UpdateTodoInput) => {
 
 const TodoContext = createContext({
   todo: null,
-  updateTodo: async (data) => null,
+  updateTodo: async (data: any): Promise<Todo | null> => null,
 });
 
-const TodoContextProvider = ({ children }) => {
+const TodoContextProvider = ({ children }: any) => {
   const [todo, setTodo] = useState(null);
 
-  const updateTodo = async (data) => {
+  const updateTodo = async (data: any) => {
     console.log(todo);
-    await DataStore.save(
-      TodoModel.copyOf(todo, (updated) => {
+    const updatedTodo: Todo = await DataStore.save(
+      Todo.copyOf(todo!, (updated) => {
         updated.description = data.description;
         console.log(updated);
       })
     );
+
+    return updatedTodo;
   };
 
   // useEffect(() => {
-  //   const subscription = DataStore.observeQuery(TodoModel).subscribe(
+  //   const subscription = DataStore.observeQuery(Todo).subscribe(
   //     (snapshot) => {
   //       const { items, isSynced } = snapshot;
   //       console.log({ items, isSynced });
@@ -83,7 +86,7 @@ const TodoContextProvider = ({ children }) => {
   );
 };
 
-export const getServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { Auth } = withSSRContext({ req });
 
   let user;
@@ -107,8 +110,8 @@ export const getServerSideProps = async ({ req }) => {
   }
 };
 
-export default function Home({ userProp }): JSX.Element {
-  const [file, setFile] = useState(null);
+export default function Home({ userProp }: any): JSX.Element {
+  const [file, setFile] = useState<File | null>(null);
   const [user, setUser] = useState(JSON.parse(userProp));
   const { todo, updateTodo } = useContext(TodoContext);
 
@@ -173,14 +176,14 @@ export default function Home({ userProp }): JSX.Element {
 
     // console.log({ graphqlTodos: graphqlTodos.data.listTodos.items });
 
-    const dataStoreTodos = await DataStore.query(TodoModel);
+    const dataStoreTodos = await DataStore.query(Todo);
 
     console.log({ dataStoreTodos });
   };
 
   const createTodo = async () => {
     const res = await DataStore.save(
-      new TodoModel({
+      new Todo({
         name: "first todo",
         description: "this is my first todo",
       })
@@ -189,31 +192,29 @@ export default function Home({ userProp }): JSX.Element {
   };
 
   const deleteTodo = async () => {
-    const todos = await DataStore.query(TodoModel);
+    const todos = await DataStore.query(Todo);
 
-    const res = await DataStore.delete(TodoModel, todos[0].id);
+    const res = await DataStore.delete(Todo, todos[0].id);
     console.log({ res });
   };
 
   useEffect(() => {
-    const datastoreListener = async (hubData) => {
-      const { event } = hubData.payload;
-      if (event === "ready") {
-        console.log("READY");
-      }
-    };
-
-    const datastoreSubscription = Hub.listen("datastore", datastoreListener);
-
-    return () => {
-      Hub.remove("datastore", datastoreListener);
-    };
+    // const datastoreListener = async (hubData) => {
+    //   const { event } = hubData.payload;
+    //   if (event === "ready") {
+    //     console.log("READY");
+    //   }
+    // };
+    // const datastoreSubscription = Hub.listen("datastore", datastoreListener);
+    // return () => {
+    //   Hub.remove("datastore", datastoreListener);
+    // };
   }, []);
 
   return (
     <TodoContextProvider>
       <Authenticator>
-        {({ signOut }) => {
+        {({ signOut, user }) => {
           return (
             <div className={styles.container}>
               <Head>
@@ -227,6 +228,17 @@ export default function Home({ userProp }): JSX.Element {
 
               <main className={styles.main}>
                 <h1>Amplify Next App</h1>
+                <ul>
+                  <li>
+                    <Link href="/customers">Customers</Link>
+                  </li>
+                  <li>
+                    <Link href="/cities">Cities</Link>
+                  </li>
+                  <li>
+                    <Link href="/protected">Protected</Link>
+                  </li>
+                </ul>
                 <h2>Welcome, {user?.attributes?.email}</h2>
                 <button onClick={signOut}>Sign Out</button>
 
@@ -249,7 +261,7 @@ export default function Home({ userProp }): JSX.Element {
                 <input
                   type="file"
                   onChange={(e) => {
-                    const file = e.target.files[0];
+                    const file: File = e?.target?.files?.[0]!;
                     setFile(file);
                   }}
                 />

@@ -20,9 +20,6 @@ export const createTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -44,9 +41,6 @@ export const updateTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -68,9 +62,6 @@ export const deleteTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -87,16 +78,10 @@ export const createProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       projectTeamId
     }
   }
@@ -114,16 +99,10 @@ export const updateProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       projectTeamId
     }
   }
@@ -141,16 +120,10 @@ export const deleteProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       projectTeamId
     }
   }
@@ -168,16 +141,10 @@ export const createTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       teamProjectId
     }
   }
@@ -195,16 +162,10 @@ export const updateTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       teamProjectId
     }
   }
@@ -222,16 +183,10 @@ export const deleteTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       teamProjectId
     }
   }
@@ -255,18 +210,12 @@ export const createCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerCityId
     }
   }
@@ -290,18 +239,12 @@ export const updateCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerCityId
     }
   }
@@ -325,18 +268,12 @@ export const deleteCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       customerCityId
     }
   }
@@ -353,9 +290,6 @@ export const createCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -371,9 +305,6 @@ export const updateCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -389,9 +320,48 @@ export const deleteCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+    }
+  }
+`;
+export const createJSONData = /* GraphQL */ `
+  mutation CreateJSONData(
+    $input: CreateJSONDataInput!
+    $condition: ModelJSONDataConditionInput
+  ) {
+    createJSONData(input: $input, condition: $condition) {
+      id
+      name
+      data
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateJSONData = /* GraphQL */ `
+  mutation UpdateJSONData(
+    $input: UpdateJSONDataInput!
+    $condition: ModelJSONDataConditionInput
+  ) {
+    updateJSONData(input: $input, condition: $condition) {
+      id
+      name
+      data
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteJSONData = /* GraphQL */ `
+  mutation DeleteJSONData(
+    $input: DeleteJSONDataInput!
+    $condition: ModelJSONDataConditionInput
+  ) {
+    deleteJSONData(input: $input, condition: $condition) {
+      id
+      name
+      data
+      createdAt
+      updatedAt
     }
   }
 `;

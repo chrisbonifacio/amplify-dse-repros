@@ -31,6 +31,10 @@ type TeamMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type JSONDataMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Customer {
   readonly id: string;
   readonly name: string;
@@ -90,4 +94,14 @@ export declare class Team {
   readonly updatedAt?: string;
   constructor(init: ModelInit<Team, TeamMetaData>);
   static copyOf(source: Team, mutator: (draft: MutableModel<Team, TeamMetaData>) => MutableModel<Team, TeamMetaData> | void): Team;
+}
+
+export declare class JSONData {
+  readonly id: string;
+  readonly name: string;
+  readonly data: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<JSONData, JSONDataMetaData>);
+  static copyOf(source: JSONData, mutator: (draft: MutableModel<JSONData, JSONDataMetaData>) => MutableModel<JSONData, JSONDataMetaData> | void): JSONData;
 }

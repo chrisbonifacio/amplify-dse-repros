@@ -1,7 +1,10 @@
-import "../styles/globals.css";
-import { Amplify } from "aws-amplify";
+import type { AppProps } from "next/app";
+import { Amplify, DataStore, syncExpression } from "aws-amplify";
 import { AmplifyProvider } from "@aws-amplify/ui-react";
 import awsconfig from "../src/aws-exports";
+import { Todo } from "../src/models";
+
+import "../styles/globals.css";
 
 Amplify.configure({
   ...awsconfig,
@@ -17,14 +20,21 @@ Amplify.configure({
       },
     },
   },
+  ssr: true,
 });
 
-function MyApp({ Component, pageProps }) {
+DataStore.configure({
+  syncExpressions: [
+    syncExpression(Todo, () => {
+      return (todo) => todo.name("eq", "test");
+    }),
+  ],
+});
+
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AmplifyProvider>
       <Component {...pageProps} />
     </AmplifyProvider>
   );
 }
-
-export default MyApp;

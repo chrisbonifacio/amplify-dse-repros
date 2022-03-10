@@ -33,6 +33,27 @@ export const onMutateCustomer = /* GraphQL */ `
     }
   }
 `;
+export const onUpdateTodoByID = /* GraphQL */ `
+  subscription OnUpdateTodoByID($id: ID!) {
+    onUpdateTodoByID(id: $id) {
+      id
+      name
+      description
+      file {
+        bucket
+        key
+        region
+        mimeType
+        localUri
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateTodo = /* GraphQL */ `
   subscription OnCreateTodo {
     onCreateTodo {

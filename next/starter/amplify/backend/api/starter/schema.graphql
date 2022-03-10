@@ -1,4 +1,4 @@
-type Todo @model @auth(rules: [{ allow: public }]) {
+type Todo @model @auth(rules: [{ allow: public }, { allow: private }]) {
   id: ID!
   name: String!
   description: String
@@ -13,13 +13,13 @@ type S3Object {
   localUri: String!
 }
 
-type Project @model @auth(rules: [{ allow: public }]) {
+type Project @model @auth(rules: [{ allow: public }, { allow: private }]) {
   id: ID!
   name: String
   team: Team @hasOne
 }
 
-type Team @model @auth(rules: [{ allow: public }]) {
+type Team @model @auth(rules: [{ allow: public }, { allow: private }]) {
   id: ID!
   name: String!
   project: Project @belongsTo
@@ -39,7 +39,7 @@ type Customer
       # allow admins to create, update, delete
       { allow: groups, groups: ["admin"] }
       # allow all authenticated users to read
-      { allow: private, operations: [read] }
+      { allow: private }
     ]
   ) {
   id: ID!
@@ -56,11 +56,38 @@ type Customer
   updatedAt: AWSDateTime!
 }
 
-type City @model @auth(rules: [{ allow: public }]) {
+type City @model @auth(rules: [{ allow: public }, { allow: private }]) {
   id: ID!
   name: String!
   country: String!
   zipCode: String!
+}
+
+type JSONData @model @auth(rules: [{ allow: public }, { allow: private }]) {
+  id: ID!
+  name: String!
+  data: AWSJSON!
+}
+
+# Put schemas below this line
+type Flight @model @auth(rules: [{ allow: public }, { allow: private }]) {
+  id: ID!
+  pilot: String!
+  airplane: Aircraft @hasOne(fields: ["airplaneId"])
+  airplaneId: ID
+}
+
+type Aircraft @model @auth(rules: [{ allow: public }, { allow: private }]) {
+  id: ID!
+  registration: String!
+  category: String
+  lastIndex: String
+  specs: AircraftSpecs
+}
+
+type AircraftSpecs {
+  passenger: Boolean
+  fuel: String
 }
 
 # subscription

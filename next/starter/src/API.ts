@@ -7,7 +7,6 @@ export type CreateTodoInput = {
   name: string,
   description?: string | null,
   file?: S3ObjectInput | null,
-  _version?: number | null,
 };
 
 export type S3ObjectInput = {
@@ -74,9 +73,6 @@ export type Todo = {
   file?: S3Object | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type S3Object = {
@@ -93,18 +89,15 @@ export type UpdateTodoInput = {
   name?: string | null,
   description?: string | null,
   file?: S3ObjectInput | null,
-  _version?: number | null,
 };
 
 export type DeleteTodoInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateProjectInput = {
   id?: string | null,
   name?: string | null,
-  _version?: number | null,
   projectTeamId?: string | null,
 };
 
@@ -139,9 +132,6 @@ export type Project = {
   team?: Team | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
   projectTeamId?: string | null,
 };
 
@@ -152,28 +142,22 @@ export type Team = {
   project?: Project | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
   teamProjectId?: string | null,
 };
 
 export type UpdateProjectInput = {
   id: string,
   name?: string | null,
-  _version?: number | null,
   projectTeamId?: string | null,
 };
 
 export type DeleteProjectInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateTeamInput = {
   id?: string | null,
   name: string,
-  _version?: number | null,
   teamProjectId?: string | null,
 };
 
@@ -188,13 +172,11 @@ export type ModelTeamConditionInput = {
 export type UpdateTeamInput = {
   id: string,
   name?: string | null,
-  _version?: number | null,
   teamProjectId?: string | null,
 };
 
 export type DeleteTeamInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateCustomerInput = {
@@ -209,7 +191,6 @@ export type CreateCustomerInput = {
   owner?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version?: number | null,
   customerCityId?: string | null,
 };
 
@@ -244,9 +225,6 @@ export type Customer = {
   owner?: string | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
   customerCityId?: string | null,
 };
 
@@ -258,9 +236,6 @@ export type City = {
   zipCode: string,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateCustomerInput = {
@@ -275,13 +250,11 @@ export type UpdateCustomerInput = {
   owner?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  _version?: number | null,
   customerCityId?: string | null,
 };
 
 export type DeleteCustomerInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type CreateCityInput = {
@@ -289,7 +262,6 @@ export type CreateCityInput = {
   name: string,
   country: string,
   zipCode: string,
-  _version?: number | null,
 };
 
 export type ModelCityConditionInput = {
@@ -306,12 +278,43 @@ export type UpdateCityInput = {
   name?: string | null,
   country?: string | null,
   zipCode?: string | null,
-  _version?: number | null,
 };
 
 export type DeleteCityInput = {
   id: string,
-  _version?: number | null,
+};
+
+export type CreateJSONDataInput = {
+  id?: string | null,
+  name: string,
+  data: string,
+};
+
+export type ModelJSONDataConditionInput = {
+  name?: ModelStringInput | null,
+  data?: ModelStringInput | null,
+  and?: Array< ModelJSONDataConditionInput | null > | null,
+  or?: Array< ModelJSONDataConditionInput | null > | null,
+  not?: ModelJSONDataConditionInput | null,
+};
+
+export type JSONData = {
+  __typename: "JSONData",
+  id: string,
+  name: string,
+  data: string,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateJSONDataInput = {
+  id: string,
+  name?: string | null,
+  data?: string | null,
+};
+
+export type DeleteJSONDataInput = {
+  id: string,
 };
 
 export type ModelTodoFilterInput = {
@@ -327,7 +330,6 @@ export type ModelTodoConnection = {
   __typename: "ModelTodoConnection",
   items:  Array<Todo | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelProjectFilterInput = {
@@ -343,7 +345,6 @@ export type ModelProjectConnection = {
   __typename: "ModelProjectConnection",
   items:  Array<Project | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelTeamFilterInput = {
@@ -359,7 +360,6 @@ export type ModelTeamConnection = {
   __typename: "ModelTeamConnection",
   items:  Array<Team | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelCustomerFilterInput = {
@@ -384,7 +384,6 @@ export type ModelCustomerConnection = {
   __typename: "ModelCustomerConnection",
   items:  Array<Customer | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type SearchableCustomerFilterInput = {
@@ -399,9 +398,6 @@ export type SearchableCustomerFilterInput = {
   owner?: SearchableStringFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
-  _version?: SearchableIntFilterInput | null,
-  _deleted?: SearchableBooleanFilterInput | null,
-  _lastChangedAt?: SearchableIntFilterInput | null,
   customerCityId?: SearchableIDFilterInput | null,
   and?: Array< SearchableCustomerFilterInput | null > | null,
   or?: Array< SearchableCustomerFilterInput | null > | null,
@@ -442,21 +438,6 @@ export type SearchableStringFilterInput = {
   range?: Array< string | null > | null,
 };
 
-export type SearchableIntFilterInput = {
-  ne?: number | null,
-  gt?: number | null,
-  lt?: number | null,
-  gte?: number | null,
-  lte?: number | null,
-  eq?: number | null,
-  range?: Array< number | null > | null,
-};
-
-export type SearchableBooleanFilterInput = {
-  eq?: boolean | null,
-  ne?: boolean | null,
-};
-
 export type SearchableCustomerSortInput = {
   field?: SearchableCustomerSortableFields | null,
   direction?: SearchableSortDirection | null,
@@ -474,9 +455,6 @@ export enum SearchableCustomerSortableFields {
   owner = "owner",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
-  _version = "_version",
-  _deleted = "_deleted",
-  _lastChangedAt = "_lastChangedAt",
   customerCityId = "customerCityId",
 }
 
@@ -514,9 +492,6 @@ export enum SearchableCustomerAggregateField {
   owner = "owner",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
-  _version = "_version",
-  _deleted = "_deleted",
-  _lastChangedAt = "_lastChangedAt",
   customerCityId = "customerCityId",
 }
 
@@ -568,7 +543,21 @@ export type ModelCityConnection = {
   __typename: "ModelCityConnection",
   items:  Array<City | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
+};
+
+export type ModelJSONDataFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  data?: ModelStringInput | null,
+  and?: Array< ModelJSONDataFilterInput | null > | null,
+  or?: Array< ModelJSONDataFilterInput | null > | null,
+  not?: ModelJSONDataFilterInput | null,
+};
+
+export type ModelJSONDataConnection = {
+  __typename: "ModelJSONDataConnection",
+  items:  Array<JSONData | null >,
+  nextToken?: string | null,
 };
 
 export type CreateTodoMutationVariables = {
@@ -592,9 +581,6 @@ export type CreateTodoMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -619,9 +605,6 @@ export type UpdateTodoMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -646,9 +629,6 @@ export type DeleteTodoMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -668,16 +648,10 @@ export type CreateProjectMutation = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -698,16 +672,10 @@ export type UpdateProjectMutation = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -728,16 +696,10 @@ export type DeleteProjectMutation = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -758,16 +720,10 @@ export type CreateTeamMutation = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -788,16 +744,10 @@ export type UpdateTeamMutation = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -818,16 +768,10 @@ export type DeleteTeamMutation = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -854,18 +798,12 @@ export type CreateCustomerMutation = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -892,18 +830,12 @@ export type UpdateCustomerMutation = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -930,18 +862,12 @@ export type DeleteCustomerMutation = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -960,9 +886,6 @@ export type CreateCityMutation = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -980,9 +903,6 @@ export type UpdateCityMutation = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1000,9 +920,54 @@ export type DeleteCityMutation = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreateJSONDataMutationVariables = {
+  input: CreateJSONDataInput,
+  condition?: ModelJSONDataConditionInput | null,
+};
+
+export type CreateJSONDataMutation = {
+  createJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateJSONDataMutationVariables = {
+  input: UpdateJSONDataInput,
+  condition?: ModelJSONDataConditionInput | null,
+};
+
+export type UpdateJSONDataMutation = {
+  updateJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteJSONDataMutationVariables = {
+  input: DeleteJSONDataInput,
+  condition?: ModelJSONDataConditionInput | null,
+};
+
+export type DeleteJSONDataMutation = {
+  deleteJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -1026,9 +991,6 @@ export type GetTodoQuery = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1048,38 +1010,8 @@ export type ListTodosQuery = {
       description?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncTodosQuery = {
-  syncTodos?:  {
-    __typename: "ModelTodoConnection",
-    items:  Array< {
-      __typename: "Todo",
-      id: string,
-      name: string,
-      description?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1098,16 +1030,10 @@ export type GetProjectQuery = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1127,39 +1053,9 @@ export type ListProjectsQuery = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncProjectsQueryVariables = {
-  filter?: ModelProjectFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProjectsQuery = {
-  syncProjects?:  {
-    __typename: "ModelProjectConnection",
-    items:  Array< {
-      __typename: "Project",
-      id: string,
-      name?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      projectTeamId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1178,16 +1074,10 @@ export type GetTeamQuery = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1207,39 +1097,9 @@ export type ListTeamsQuery = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncTeamsQueryVariables = {
-  filter?: ModelTeamFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncTeamsQuery = {
-  syncTeams?:  {
-    __typename: "ModelTeamConnection",
-    items:  Array< {
-      __typename: "Team",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      teamProjectId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1264,18 +1124,12 @@ export type GetCustomerQuery = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1302,46 +1156,9 @@ export type ListCustomersQuery = {
       owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       customerCityId?: string | null,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncCustomersQueryVariables = {
-  filter?: ModelCustomerFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncCustomersQuery = {
-  syncCustomers?:  {
-    __typename: "ModelCustomerConnection",
-    items:  Array< {
-      __typename: "Customer",
-      id: string,
-      name: string,
-      email: string,
-      Mobile: string,
-      customer_notes: string,
-      admin_notes: string,
-      cities?: string | null,
-      langs?: Array< string | null > | null,
-      owner?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      customerCityId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1370,9 +1187,6 @@ export type SearchCustomersQuery = {
       owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       customerCityId?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -1409,9 +1223,6 @@ export type GetCityQuery = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1432,39 +1243,44 @@ export type ListCitiesQuery = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
-export type SyncCitiesQueryVariables = {
-  filter?: ModelCityFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
+export type GetJSONDataQueryVariables = {
+  id: string,
 };
 
-export type SyncCitiesQuery = {
-  syncCities?:  {
-    __typename: "ModelCityConnection",
+export type GetJSONDataQuery = {
+  getJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListJSONDataQueryVariables = {
+  filter?: ModelJSONDataFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListJSONDataQuery = {
+  listJSONData?:  {
+    __typename: "ModelJSONDataConnection",
     items:  Array< {
-      __typename: "City",
+      __typename: "JSONData",
       id: string,
       name: string,
-      country: string,
-      zipCode: string,
+      data: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1493,18 +1309,12 @@ export type OnMutateCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1529,9 +1339,6 @@ export type OnUpdateTodoByIDSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1551,9 +1358,6 @@ export type OnCreateTodoSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1573,9 +1377,6 @@ export type OnUpdateTodoSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1595,9 +1396,6 @@ export type OnDeleteTodoSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1612,16 +1410,10 @@ export type OnCreateProjectSubscription = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1637,16 +1429,10 @@ export type OnUpdateProjectSubscription = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1662,16 +1448,10 @@ export type OnDeleteProjectSubscription = {
       name: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1687,16 +1467,10 @@ export type OnCreateTeamSubscription = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1712,16 +1486,10 @@ export type OnUpdateTeamSubscription = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1737,16 +1505,10 @@ export type OnDeleteTeamSubscription = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1768,18 +1530,12 @@ export type OnCreateCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1801,18 +1557,12 @@ export type OnUpdateCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1834,18 +1584,12 @@ export type OnDeleteCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1859,9 +1603,6 @@ export type OnCreateCitySubscription = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1874,9 +1615,6 @@ export type OnUpdateCitySubscription = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1889,8 +1627,38 @@ export type OnDeleteCitySubscription = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateJSONDataSubscription = {
+  onCreateJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateJSONDataSubscription = {
+  onUpdateJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteJSONDataSubscription = {
+  onDeleteJSONData?:  {
+    __typename: "JSONData",
+    id: string,
+    name: string,
+    data: string,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };

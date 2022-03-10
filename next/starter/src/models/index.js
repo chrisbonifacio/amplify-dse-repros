@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { Customer, City, Todo, Project, Team, S3Object } = initSchema(schema);
+const { Customer, City, Todo, Project, Team, JSONData, S3Object } = initSchema(schema);
 
 export {
   Customer,
@@ -12,5 +12,6 @@ export {
   Todo,
   Project,
   Team,
+  JSONData,
   S3Object
 };
