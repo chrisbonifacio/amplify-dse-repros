@@ -36,13 +36,13 @@ const Customers = () => {
 
   const fetchCustomer = async () => {
     try {
-      const response = await API.graphql({
+      const response = (await API.graphql({
         query: getCustomer,
         variables: {
           id: "73790b2d-6f8d-4555-bdb0-604725e2c640",
         },
         authMode: "AMAZON_COGNITO_USER_POOLS",
-      });
+      })) as any;
 
       setCustomers([response.data.getCustomer]);
 

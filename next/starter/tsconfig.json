@@ -24,9 +24,11 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "Globals.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "amplify/**"
   ]
 }

@@ -5,6 +5,7 @@ import { createCity, deleteCity, updateCity } from "../src/graphql/mutations";
 import { onUpdateCity } from "../src/graphql/subscriptions";
 import Link from "next/link";
 import { getCity } from "../src/graphql/queries";
+import { GraphQLResult } from "@aws-amplify/api-graphql";
 
 const Cities = () => {
   const [cities, setcities] = useState<City[]>([]);
@@ -33,15 +34,15 @@ const Cities = () => {
 
   const fetchCity = async () => {
     try {
-      const response = await API.graphql({
+      const response = (await API.graphql({
         query: getCity,
         variables: {
           id: "ceedeaf9-e9f9-45b3-ac89-ded3df3dfa2b",
         },
         authMode: "API_KEY",
-      });
+      })) as any;
 
-      setcities([response.data.getCity]);
+      setcities([response?.data?.getCity]);
 
       console.log(response);
     } catch (error) {

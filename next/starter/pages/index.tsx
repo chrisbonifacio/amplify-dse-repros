@@ -17,7 +17,7 @@ import awsconfig from "../src/aws-exports";
 import * as queries from "../src/graphql/queries";
 import * as mutations from "../src/graphql/mutations";
 
-import * as styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.css";
 
 import "@aws-amplify/ui-react/styles.css";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
@@ -46,12 +46,15 @@ const updateTodo = async (input: UpdateTodoInput) => {
 // });
 
 const TodoContext = createContext({
-  todo: null,
+  todo: {
+    name: "",
+    description: "",
+  },
   updateTodo: async (data: any): Promise<Todo | null> => null,
 });
 
 const TodoContextProvider = ({ children }: any) => {
-  const [todo, setTodo] = useState(null);
+  const [todo, setTodo] = useState<any>(null);
 
   const updateTodo = async (data: any) => {
     console.log(todo);
@@ -226,7 +229,7 @@ export default function Home({ userProp }: any): JSX.Element {
                 <link rel="icon" href="/favicon.ico" />
               </Head>
 
-              <main className={styles.main}>
+              <main className="main">
                 <h1>Amplify Next App</h1>
                 <ul>
                   <li>
