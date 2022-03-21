@@ -2,9 +2,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTodo = /* GraphQL */ `
-  query GetTodo($id: ID!) {
-    getTodo(id: $id) {
+export const getMappedTodo = /* GraphQL */ `
+  query GetMappedTodo($id: ID!) {
+    getMappedTodo(id: $id) {
       id
       name
       description
@@ -17,24 +17,59 @@ export const getTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const listTodos = /* GraphQL */ `
-  query ListTodos(
-    $filter: ModelTodoFilterInput
+export const listMappedTodos = /* GraphQL */ `
+  query ListMappedTodos(
+    $filter: ModelMappedTodoFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listMappedTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
         description
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncMappedTodos = /* GraphQL */ `
+  query SyncMappedTodos(
+    $filter: ModelMappedTodoFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncMappedTodos(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        description
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -48,10 +83,16 @@ export const getProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -68,9 +109,41 @@ export const listProjects = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncProjects = /* GraphQL */ `
+  query SyncProjects(
+    $filter: ModelProjectFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncProjects(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        projectTeamId
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -84,10 +157,16 @@ export const getTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -104,9 +183,41 @@ export const listTeams = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTeams = /* GraphQL */ `
+  query SyncTeams(
+    $filter: ModelTeamFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTeams(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        teamProjectId
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -126,12 +237,18 @@ export const getCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -155,9 +272,48 @@ export const listCustomers = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         customerCityId
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCustomers = /* GraphQL */ `
+  query SyncCustomers(
+    $filter: ModelCustomerFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCustomers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        email
+        Mobile
+        customer_notes
+        admin_notes
+        cities
+        langs
+        owner
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerCityId
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -190,6 +346,9 @@ export const searchCustomers = /* GraphQL */ `
         owner
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         customerCityId
       }
       nextToken
@@ -220,6 +379,9 @@ export const getCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -237,8 +399,41 @@ export const listCities = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCities = /* GraphQL */ `
+  query SyncCities(
+    $filter: ModelCityFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCities(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        country
+        zipCode
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -250,6 +445,9 @@ export const getJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -266,8 +464,186 @@ export const listJSONData = /* GraphQL */ `
         data
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncJSONData = /* GraphQL */ `
+  query SyncJSONData(
+    $filter: ModelJSONDataFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncJSONData(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        data
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getFlight = /* GraphQL */ `
+  query GetFlight($id: ID!) {
+    getFlight(id: $id) {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listFlights = /* GraphQL */ `
+  query ListFlights(
+    $filter: ModelFlightFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFlights(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pilot
+        airplaneId
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncFlights = /* GraphQL */ `
+  query SyncFlights(
+    $filter: ModelFlightFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncFlights(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        pilot
+        airplaneId
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getAircraft = /* GraphQL */ `
+  query GetAircraft($id: ID!) {
+    getAircraft(id: $id) {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listAircraft = /* GraphQL */ `
+  query ListAircraft(
+    $filter: ModelAircraftFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAircraft(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncAircraft = /* GraphQL */ `
+  query SyncAircraft(
+    $filter: ModelAircraftFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncAircraft(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;

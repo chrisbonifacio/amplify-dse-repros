@@ -18,12 +18,18 @@ export const onMutateCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -43,12 +49,15 @@ export const onUpdateTodoByID = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCreateMappedTodo = /* GraphQL */ `
+  subscription OnCreateMappedTodo {
+    onCreateMappedTodo {
       id
       name
       description
@@ -61,12 +70,15 @@ export const onCreateTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onUpdateMappedTodo = /* GraphQL */ `
+  subscription OnUpdateMappedTodo {
+    onUpdateMappedTodo {
       id
       name
       description
@@ -79,12 +91,15 @@ export const onUpdateTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onDeleteMappedTodo = /* GraphQL */ `
+  subscription OnDeleteMappedTodo {
+    onDeleteMappedTodo {
       id
       name
       description
@@ -97,6 +112,9 @@ export const onDeleteTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -110,10 +128,16 @@ export const onCreateProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -128,10 +152,16 @@ export const onUpdateProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -146,10 +176,16 @@ export const onDeleteProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -164,10 +200,16 @@ export const onCreateTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -182,10 +224,16 @@ export const onUpdateTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -200,10 +248,16 @@ export const onDeleteTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -224,12 +278,18 @@ export const onCreateCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -250,12 +310,18 @@ export const onUpdateCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -276,12 +342,18 @@ export const onDeleteCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -295,6 +367,9 @@ export const onCreateCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -307,6 +382,9 @@ export const onUpdateCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -319,6 +397,9 @@ export const onDeleteCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -330,6 +411,9 @@ export const onCreateJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -341,6 +425,9 @@ export const onUpdateJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -352,6 +439,141 @@ export const onDeleteJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateFlight = /* GraphQL */ `
+  subscription OnCreateFlight {
+    onCreateFlight {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateFlight = /* GraphQL */ `
+  subscription OnUpdateFlight {
+    onUpdateFlight {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteFlight = /* GraphQL */ `
+  subscription OnDeleteFlight {
+    onDeleteFlight {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateAircraft = /* GraphQL */ `
+  subscription OnCreateAircraft {
+    onCreateAircraft {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateAircraft = /* GraphQL */ `
+  subscription OnUpdateAircraft {
+    onUpdateAircraft {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteAircraft = /* GraphQL */ `
+  subscription OnDeleteAircraft {
+    onDeleteAircraft {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

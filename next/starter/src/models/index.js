@@ -4,14 +4,17 @@ import { schema } from './schema';
 
 
 
-const { Customer, City, Todo, Project, Team, JSONData, S3Object } = initSchema(schema);
+const { Customer, City, MappedTodo, Project, Team, JSONData, Flight, Aircraft, S3Object, AircraftSpecs } = initSchema(schema);
 
 export {
   Customer,
   City,
-  Todo,
+  MappedTodo,
   Project,
   Team,
   JSONData,
-  S3Object
+  Flight,
+  Aircraft,
+  S3Object,
+  AircraftSpecs
 };

@@ -45,7 +45,17 @@
     "s307d73b29": {
       "service": "S3",
       "providerPlugin": "awscloudformation",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "storage",
+          "attributes": [
+            "Name",
+            "Arn",
+            "LambdaExecutionRole"
+          ]
+        }
+      ]
     }
   },
   "api": {
@@ -123,6 +133,11 @@
       "service": "Lambda"
     },
     "graphQlLambdaAuthorizer64cabe43": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "storage": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

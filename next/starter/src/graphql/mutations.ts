@@ -2,12 +2,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createMappedTodo = /* GraphQL */ `
+  mutation CreateMappedTodo(
+    $input: CreateMappedTodoInput!
+    $condition: ModelMappedTodoConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createMappedTodo(input: $input, condition: $condition) {
       id
       name
       description
@@ -20,15 +20,18 @@ export const createTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateMappedTodo = /* GraphQL */ `
+  mutation UpdateMappedTodo(
+    $input: UpdateMappedTodoInput!
+    $condition: ModelMappedTodoConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateMappedTodo(input: $input, condition: $condition) {
       id
       name
       description
@@ -41,15 +44,18 @@ export const updateTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteMappedTodo = /* GraphQL */ `
+  mutation DeleteMappedTodo(
+    $input: DeleteMappedTodoInput!
+    $condition: ModelMappedTodoConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteMappedTodo(input: $input, condition: $condition) {
       id
       name
       description
@@ -62,6 +68,9 @@ export const deleteTodo = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -78,10 +87,16 @@ export const createProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -99,10 +114,16 @@ export const updateProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -120,10 +141,16 @@ export const deleteProject = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         teamProjectId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       projectTeamId
     }
   }
@@ -141,10 +168,16 @@ export const createTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -162,10 +195,16 @@ export const updateTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -183,10 +222,16 @@ export const deleteTeam = /* GraphQL */ `
         name
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         projectTeamId
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       teamProjectId
     }
   }
@@ -210,12 +255,18 @@ export const createCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -239,12 +290,18 @@ export const updateCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -268,12 +325,18 @@ export const deleteCustomer = /* GraphQL */ `
         zipCode
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       cities
       langs
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       customerCityId
     }
   }
@@ -290,6 +353,9 @@ export const createCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -305,6 +371,9 @@ export const updateCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -320,6 +389,9 @@ export const deleteCity = /* GraphQL */ `
       zipCode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -334,6 +406,9 @@ export const createJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -348,6 +423,9 @@ export const updateJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -362,6 +440,159 @@ export const deleteJSONData = /* GraphQL */ `
       data
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createFlight = /* GraphQL */ `
+  mutation CreateFlight(
+    $input: CreateFlightInput!
+    $condition: ModelFlightConditionInput
+  ) {
+    createFlight(input: $input, condition: $condition) {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateFlight = /* GraphQL */ `
+  mutation UpdateFlight(
+    $input: UpdateFlightInput!
+    $condition: ModelFlightConditionInput
+  ) {
+    updateFlight(input: $input, condition: $condition) {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteFlight = /* GraphQL */ `
+  mutation DeleteFlight(
+    $input: DeleteFlightInput!
+    $condition: ModelFlightConditionInput
+  ) {
+    deleteFlight(input: $input, condition: $condition) {
+      id
+      pilot
+      airplane {
+        id
+        registration
+        category
+        lastIndex
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      airplaneId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createAircraft = /* GraphQL */ `
+  mutation CreateAircraft(
+    $input: CreateAircraftInput!
+    $condition: ModelAircraftConditionInput
+  ) {
+    createAircraft(input: $input, condition: $condition) {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateAircraft = /* GraphQL */ `
+  mutation UpdateAircraft(
+    $input: UpdateAircraftInput!
+    $condition: ModelAircraftConditionInput
+  ) {
+    updateAircraft(input: $input, condition: $condition) {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteAircraft = /* GraphQL */ `
+  mutation DeleteAircraft(
+    $input: DeleteAircraftInput!
+    $condition: ModelAircraftConditionInput
+  ) {
+    deleteAircraft(input: $input, condition: $condition) {
+      id
+      registration
+      category
+      lastIndex
+      specs {
+        passenger
+        fuel
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

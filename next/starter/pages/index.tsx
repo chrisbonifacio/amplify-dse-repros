@@ -21,13 +21,14 @@ import styles from "../styles/Home.module.css";
 
 import "@aws-amplify/ui-react/styles.css";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
-import { UpdateTodoInput } from "../src/API";
-import { Todo } from "../src/models";
+import { UpdateMappedTodoInput } from "../src/API";
+import { MappedTodo } from "../src/models";
 import { GetServerSideProps } from "next";
+import Script from "next/script";
 
-const updateTodo = async (input: UpdateTodoInput) => {
+const updateMappedTodo = async (input: UpdateMappedTodoInput) => {
   const res = await API.graphql({
-    query: mutations.createTodo,
+    query: mutations.createMappedTodo,
     variables: {
       input,
     },
@@ -45,36 +46,36 @@ const updateTodo = async (input: UpdateTodoInput) => {
 //   },
 // });
 
-const TodoContext = createContext({
+const MappedTodoContext = createContext({
   todo: {
     name: "",
     description: "",
   },
-  updateTodo: async (data: any): Promise<Todo | null> => null,
+  updateMappedTodo: async (data: any): Promise<MappedTodo | null> => null,
 });
 
-const TodoContextProvider = ({ children }: any) => {
-  const [todo, setTodo] = useState<any>(null);
+const MappedTodoContextProvider = ({ children }: any) => {
+  const [todo, setMappedTodo] = useState<any>(null);
 
-  const updateTodo = async (data: any) => {
+  const updateMappedTodo = async (data: any) => {
     console.log(todo);
-    const updatedTodo: Todo = await DataStore.save(
-      Todo.copyOf(todo!, (updated) => {
+    const updatedMappedTodo: MappedTodo = await DataStore.save(
+      MappedTodo.copyOf(todo!, (updated) => {
         updated.description = data.description;
         console.log(updated);
       })
     );
 
-    return updatedTodo;
+    return updatedMappedTodo;
   };
 
   // useEffect(() => {
-  //   const subscription = DataStore.observeQuery(Todo).subscribe(
+  //   const subscription = DataStore.observeQuery(MappedTodo).subscribe(
   //     (snapshot) => {
   //       const { items, isSynced } = snapshot;
   //       console.log({ items, isSynced });
   //       if (isSynced) {
-  //         setTodo(items[0]);
+  //         setMappedTodo(items[0]);
   //       }
   //     }
   //   );
@@ -83,9 +84,9 @@ const TodoContextProvider = ({ children }: any) => {
   // }, []);
 
   return (
-    <TodoContext.Provider value={{ todo, updateTodo }}>
+    <MappedTodoContext.Provider value={{ todo, updateMappedTodo }}>
       {children}
-    </TodoContext.Provider>
+    </MappedTodoContext.Provider>
   );
 };
 
@@ -116,7 +117,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 export default function Home({ userProp }: any): JSX.Element {
   const [file, setFile] = useState<File | null>(null);
   const [user, setUser] = useState(JSON.parse(userProp));
-  const { todo, updateTodo } = useContext(TodoContext);
+  const { todo, updateMappedTodo } = useContext(MappedTodoContext);
 
   // ... After sign in through Cognito
   const getFiles = async () => console.log({ file: await Storage.list("") });
@@ -126,7 +127,7 @@ export default function Home({ userProp }: any): JSX.Element {
 
   const putFileWithAppSync = async () => {
     const res = await API.graphql({
-      query: mutations.createTodo,
+      query: mutations.createMappedTodo,
       variables: {
         input: {
           name: "test file",
@@ -172,21 +173,21 @@ export default function Home({ userProp }: any): JSX.Element {
       .catch((error) => console.log(error));
   };
 
-  const getTodos = async () => {
-    const graphqlTodos = (await API.graphql({
-      query: queries.listTodos,
-    })) as any;
+  const getMappedTodos = async () => {
+    // const graphqlMappedTodos = (await API.graphql({
+    //   query: queries.listMappedTodos,
+    // })) as any;
 
-    // console.log({ graphqlTodos: graphqlTodos.data.listTodos.items });
+    // console.log({ graphqlMappedTodos: graphqlMappedTodos.data.listMappedTodos.items });
 
-    const dataStoreTodos = await DataStore.query(Todo);
+    const dataStoreMappedTodos = await DataStore.query(MappedTodo);
 
-    console.log({ dataStoreTodos });
+    console.log({ dataStoreMappedTodos });
   };
 
-  const createTodo = async () => {
+  const createMappedTodo = async () => {
     const res = await DataStore.save(
-      new Todo({
+      new MappedTodo({
         name: "first todo",
         description: "this is my first todo",
       })
@@ -194,10 +195,10 @@ export default function Home({ userProp }: any): JSX.Element {
     console.log({ res });
   };
 
-  const deleteTodo = async () => {
-    const todos = await DataStore.query(Todo);
+  const deleteMappedTodo = async () => {
+    const todos = await DataStore.query(MappedTodo);
 
-    const res = await DataStore.delete(Todo, todos[0].id);
+    const res = await DataStore.delete(MappedTodo, todos[0].id);
     console.log({ res });
   };
 
@@ -215,7 +216,7 @@ export default function Home({ userProp }: any): JSX.Element {
   }, []);
 
   return (
-    <TodoContextProvider>
+    <MappedTodoContextProvider>
       <Authenticator>
         {({ signOut, user }) => {
           return (
@@ -248,14 +249,16 @@ export default function Home({ userProp }: any): JSX.Element {
                 <button onClick={putFile}>Put File</button>
                 <button onClick={getFiles}>Get Files</button>
 
-                <button onClick={getTodos}>Get Todos</button>
-                <button onClick={createTodo}>Create Todo</button>
+                <button onClick={getMappedTodos}>Get MappedTodos</button>
+                <button onClick={createMappedTodo}>Create MappedTodo</button>
                 <button
-                  onClick={() => updateTodo({ description: "new description" })}
+                  onClick={() =>
+                    updateMappedTodo({ description: "new description" })
+                  }
                 >
-                  Update Todo
+                  Update MappedTodo
                 </button>
-                <button onClick={deleteTodo}>Delete Todo</button>
+                <button onClick={deleteMappedTodo}>Delete MappedTodo</button>
 
                 <button onClick={startDataStore}>Start DataStore</button>
 
@@ -282,7 +285,7 @@ export default function Home({ userProp }: any): JSX.Element {
                 </section>
 
                 <section>
-                  <h2>Todo</h2>
+                  <h2>MappedTodo</h2>
                   <p>{todo?.name}</p>
                   <p>{todo?.description}</p>
                 </section>
@@ -291,6 +294,6 @@ export default function Home({ userProp }: any): JSX.Element {
           );
         }}
       </Authenticator>
-    </TodoContextProvider>
+    </MappedTodoContextProvider>
   );
 }

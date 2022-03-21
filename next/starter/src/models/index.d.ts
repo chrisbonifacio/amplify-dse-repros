@@ -11,6 +11,12 @@ export declare class S3Object {
   constructor(init: ModelInit<S3Object>);
 }
 
+export declare class AircraftSpecs {
+  readonly passenger?: boolean;
+  readonly fuel?: string;
+  constructor(init: ModelInit<AircraftSpecs>);
+}
+
 type CustomerMetaData = {
   readOnlyFields;
 }
@@ -19,7 +25,7 @@ type CityMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TodoMetaData = {
+type MappedTodoMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -32,6 +38,14 @@ type TeamMetaData = {
 }
 
 type JSONDataMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type FlightMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type AircraftMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -64,15 +78,15 @@ export declare class City {
   static copyOf(source: City, mutator: (draft: MutableModel<City, CityMetaData>) => MutableModel<City, CityMetaData> | void): City;
 }
 
-export declare class Todo {
+export declare class MappedTodo {
   readonly id: string;
   readonly name: string;
   readonly description?: string;
   readonly file?: S3Object;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Todo, TodoMetaData>);
-  static copyOf(source: Todo, mutator: (draft: MutableModel<Todo, TodoMetaData>) => MutableModel<Todo, TodoMetaData> | void): Todo;
+  constructor(init: ModelInit<MappedTodo, MappedTodoMetaData>);
+  static copyOf(source: MappedTodo, mutator: (draft: MutableModel<MappedTodo, MappedTodoMetaData>) => MutableModel<MappedTodo, MappedTodoMetaData> | void): MappedTodo;
 }
 
 export declare class Project {
@@ -104,4 +118,27 @@ export declare class JSONData {
   readonly updatedAt?: string;
   constructor(init: ModelInit<JSONData, JSONDataMetaData>);
   static copyOf(source: JSONData, mutator: (draft: MutableModel<JSONData, JSONDataMetaData>) => MutableModel<JSONData, JSONDataMetaData> | void): JSONData;
+}
+
+export declare class Flight {
+  readonly id: string;
+  readonly pilot: string;
+  readonly airplane?: Aircraft;
+  readonly airplaneId?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Flight, FlightMetaData>);
+  static copyOf(source: Flight, mutator: (draft: MutableModel<Flight, FlightMetaData>) => MutableModel<Flight, FlightMetaData> | void): Flight;
+}
+
+export declare class Aircraft {
+  readonly id: string;
+  readonly registration: string;
+  readonly category?: string;
+  readonly lastIndex?: string;
+  readonly specs?: AircraftSpecs;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Aircraft, AircraftMetaData>);
+  static copyOf(source: Aircraft, mutator: (draft: MutableModel<Aircraft, AircraftMetaData>) => MutableModel<Aircraft, AircraftMetaData> | void): Aircraft;
 }

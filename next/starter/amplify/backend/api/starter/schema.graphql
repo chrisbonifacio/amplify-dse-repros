@@ -1,4 +1,7 @@
-type Todo @model @auth(rules: [{ allow: public }, { allow: private }]) {
+type MappedTodo
+  @model
+  @mapsTo(name: "Todo")
+  @auth(rules: [{ allow: public }, { allow: private }]) {
   id: ID!
   name: String!
   description: String
@@ -97,5 +100,6 @@ type Subscription {
       mutations: ["createCustomer", "updateCustomer", "deleteCustomer"]
     )
 
-  onUpdateTodoByID(id: ID!): Todo @aws_subscribe(mutations: ["updateTodo"])
+  onUpdateTodoByID(id: ID!): MappedTodo
+    @aws_subscribe(mutations: ["updateMappedTodo"])
 }

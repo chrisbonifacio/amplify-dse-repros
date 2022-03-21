@@ -2,11 +2,12 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTodoInput = {
+export type CreateMappedTodoInput = {
   id?: string | null,
   name: string,
   description?: string | null,
   file?: S3ObjectInput | null,
+  _version?: number | null,
 };
 
 export type S3ObjectInput = {
@@ -17,12 +18,12 @@ export type S3ObjectInput = {
   localUri: string,
 };
 
-export type ModelTodoConditionInput = {
+export type ModelMappedTodoConditionInput = {
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
+  and?: Array< ModelMappedTodoConditionInput | null > | null,
+  or?: Array< ModelMappedTodoConditionInput | null > | null,
+  not?: ModelMappedTodoConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -65,14 +66,17 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Todo = {
-  __typename: "Todo",
+export type MappedTodo = {
+  __typename: "MappedTodo",
   id: string,
   name: string,
   description?: string | null,
   file?: S3Object | null,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
 export type S3Object = {
@@ -84,20 +88,23 @@ export type S3Object = {
   localUri: string,
 };
 
-export type UpdateTodoInput = {
+export type UpdateMappedTodoInput = {
   id: string,
   name?: string | null,
   description?: string | null,
   file?: S3ObjectInput | null,
+  _version?: number | null,
 };
 
-export type DeleteTodoInput = {
+export type DeleteMappedTodoInput = {
   id: string,
+  _version?: number | null,
 };
 
 export type CreateProjectInput = {
   id?: string | null,
   name?: string | null,
+  _version?: number | null,
   projectTeamId?: string | null,
 };
 
@@ -132,6 +139,9 @@ export type Project = {
   team?: Team | null,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
   projectTeamId?: string | null,
 };
 
@@ -142,22 +152,28 @@ export type Team = {
   project?: Project | null,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
   teamProjectId?: string | null,
 };
 
 export type UpdateProjectInput = {
   id: string,
   name?: string | null,
+  _version?: number | null,
   projectTeamId?: string | null,
 };
 
 export type DeleteProjectInput = {
   id: string,
+  _version?: number | null,
 };
 
 export type CreateTeamInput = {
   id?: string | null,
   name: string,
+  _version?: number | null,
   teamProjectId?: string | null,
 };
 
@@ -172,11 +188,13 @@ export type ModelTeamConditionInput = {
 export type UpdateTeamInput = {
   id: string,
   name?: string | null,
+  _version?: number | null,
   teamProjectId?: string | null,
 };
 
 export type DeleteTeamInput = {
   id: string,
+  _version?: number | null,
 };
 
 export type CreateCustomerInput = {
@@ -191,6 +209,7 @@ export type CreateCustomerInput = {
   owner?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  _version?: number | null,
   customerCityId?: string | null,
 };
 
@@ -225,6 +244,9 @@ export type Customer = {
   owner?: string | null,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
   customerCityId?: string | null,
 };
 
@@ -236,6 +258,9 @@ export type City = {
   zipCode: string,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
 export type UpdateCustomerInput = {
@@ -250,11 +275,13 @@ export type UpdateCustomerInput = {
   owner?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  _version?: number | null,
   customerCityId?: string | null,
 };
 
 export type DeleteCustomerInput = {
   id: string,
+  _version?: number | null,
 };
 
 export type CreateCityInput = {
@@ -262,6 +289,7 @@ export type CreateCityInput = {
   name: string,
   country: string,
   zipCode: string,
+  _version?: number | null,
 };
 
 export type ModelCityConditionInput = {
@@ -278,16 +306,19 @@ export type UpdateCityInput = {
   name?: string | null,
   country?: string | null,
   zipCode?: string | null,
+  _version?: number | null,
 };
 
 export type DeleteCityInput = {
   id: string,
+  _version?: number | null,
 };
 
 export type CreateJSONDataInput = {
   id?: string | null,
   name: string,
   data: string,
+  _version?: number | null,
 };
 
 export type ModelJSONDataConditionInput = {
@@ -305,31 +336,134 @@ export type JSONData = {
   data: string,
   createdAt: string,
   updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
 };
 
 export type UpdateJSONDataInput = {
   id: string,
   name?: string | null,
   data?: string | null,
+  _version?: number | null,
 };
 
 export type DeleteJSONDataInput = {
   id: string,
+  _version?: number | null,
 };
 
-export type ModelTodoFilterInput = {
+export type CreateFlightInput = {
+  id?: string | null,
+  pilot: string,
+  airplaneId?: string | null,
+  _version?: number | null,
+};
+
+export type ModelFlightConditionInput = {
+  pilot?: ModelStringInput | null,
+  airplaneId?: ModelIDInput | null,
+  and?: Array< ModelFlightConditionInput | null > | null,
+  or?: Array< ModelFlightConditionInput | null > | null,
+  not?: ModelFlightConditionInput | null,
+};
+
+export type Flight = {
+  __typename: "Flight",
+  id: string,
+  pilot: string,
+  airplane?: Aircraft | null,
+  airplaneId?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type Aircraft = {
+  __typename: "Aircraft",
+  id: string,
+  registration: string,
+  category?: string | null,
+  lastIndex?: string | null,
+  specs?: AircraftSpecs | null,
+  createdAt: string,
+  updatedAt: string,
+  _version: number,
+  _deleted?: boolean | null,
+  _lastChangedAt: number,
+};
+
+export type AircraftSpecs = {
+  __typename: "AircraftSpecs",
+  passenger?: boolean | null,
+  fuel?: string | null,
+};
+
+export type UpdateFlightInput = {
+  id: string,
+  pilot?: string | null,
+  airplaneId?: string | null,
+  _version?: number | null,
+};
+
+export type DeleteFlightInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type CreateAircraftInput = {
+  id?: string | null,
+  registration: string,
+  category?: string | null,
+  lastIndex?: string | null,
+  specs?: AircraftSpecsInput | null,
+  _version?: number | null,
+};
+
+export type AircraftSpecsInput = {
+  passenger?: boolean | null,
+  fuel?: string | null,
+};
+
+export type ModelAircraftConditionInput = {
+  registration?: ModelStringInput | null,
+  category?: ModelStringInput | null,
+  lastIndex?: ModelStringInput | null,
+  and?: Array< ModelAircraftConditionInput | null > | null,
+  or?: Array< ModelAircraftConditionInput | null > | null,
+  not?: ModelAircraftConditionInput | null,
+};
+
+export type UpdateAircraftInput = {
+  id: string,
+  registration?: string | null,
+  category?: string | null,
+  lastIndex?: string | null,
+  specs?: AircraftSpecsInput | null,
+  _version?: number | null,
+};
+
+export type DeleteAircraftInput = {
+  id: string,
+  _version?: number | null,
+};
+
+export type ModelMappedTodoFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
+  and?: Array< ModelMappedTodoFilterInput | null > | null,
+  or?: Array< ModelMappedTodoFilterInput | null > | null,
+  not?: ModelMappedTodoFilterInput | null,
 };
 
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection",
-  items:  Array<Todo | null >,
+export type ModelMappedTodoConnection = {
+  __typename: "ModelMappedTodoConnection",
+  items:  Array<MappedTodo | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
 export type ModelProjectFilterInput = {
@@ -345,6 +479,7 @@ export type ModelProjectConnection = {
   __typename: "ModelProjectConnection",
   items:  Array<Project | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
 export type ModelTeamFilterInput = {
@@ -360,6 +495,7 @@ export type ModelTeamConnection = {
   __typename: "ModelTeamConnection",
   items:  Array<Team | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
 export type ModelCustomerFilterInput = {
@@ -384,6 +520,7 @@ export type ModelCustomerConnection = {
   __typename: "ModelCustomerConnection",
   items:  Array<Customer | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
 export type SearchableCustomerFilterInput = {
@@ -398,6 +535,9 @@ export type SearchableCustomerFilterInput = {
   owner?: SearchableStringFilterInput | null,
   createdAt?: SearchableStringFilterInput | null,
   updatedAt?: SearchableStringFilterInput | null,
+  _version?: SearchableIntFilterInput | null,
+  _deleted?: SearchableBooleanFilterInput | null,
+  _lastChangedAt?: SearchableIntFilterInput | null,
   customerCityId?: SearchableIDFilterInput | null,
   and?: Array< SearchableCustomerFilterInput | null > | null,
   or?: Array< SearchableCustomerFilterInput | null > | null,
@@ -438,6 +578,21 @@ export type SearchableStringFilterInput = {
   range?: Array< string | null > | null,
 };
 
+export type SearchableIntFilterInput = {
+  ne?: number | null,
+  gt?: number | null,
+  lt?: number | null,
+  gte?: number | null,
+  lte?: number | null,
+  eq?: number | null,
+  range?: Array< number | null > | null,
+};
+
+export type SearchableBooleanFilterInput = {
+  eq?: boolean | null,
+  ne?: boolean | null,
+};
+
 export type SearchableCustomerSortInput = {
   field?: SearchableCustomerSortableFields | null,
   direction?: SearchableSortDirection | null,
@@ -455,6 +610,9 @@ export enum SearchableCustomerSortableFields {
   owner = "owner",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  _version = "_version",
+  _deleted = "_deleted",
+  _lastChangedAt = "_lastChangedAt",
   customerCityId = "customerCityId",
 }
 
@@ -492,6 +650,9 @@ export enum SearchableCustomerAggregateField {
   owner = "owner",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
+  _version = "_version",
+  _deleted = "_deleted",
+  _lastChangedAt = "_lastChangedAt",
   customerCityId = "customerCityId",
 }
 
@@ -543,6 +704,7 @@ export type ModelCityConnection = {
   __typename: "ModelCityConnection",
   items:  Array<City | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
 export type ModelJSONDataFilterInput = {
@@ -558,16 +720,50 @@ export type ModelJSONDataConnection = {
   __typename: "ModelJSONDataConnection",
   items:  Array<JSONData | null >,
   nextToken?: string | null,
+  startedAt?: number | null,
 };
 
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type ModelFlightFilterInput = {
+  id?: ModelIDInput | null,
+  pilot?: ModelStringInput | null,
+  airplaneId?: ModelIDInput | null,
+  and?: Array< ModelFlightFilterInput | null > | null,
+  or?: Array< ModelFlightFilterInput | null > | null,
+  not?: ModelFlightFilterInput | null,
 };
 
-export type CreateTodoMutation = {
-  createTodo?:  {
-    __typename: "Todo",
+export type ModelFlightConnection = {
+  __typename: "ModelFlightConnection",
+  items:  Array<Flight | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type ModelAircraftFilterInput = {
+  id?: ModelIDInput | null,
+  registration?: ModelStringInput | null,
+  category?: ModelStringInput | null,
+  lastIndex?: ModelStringInput | null,
+  and?: Array< ModelAircraftFilterInput | null > | null,
+  or?: Array< ModelAircraftFilterInput | null > | null,
+  not?: ModelAircraftFilterInput | null,
+};
+
+export type ModelAircraftConnection = {
+  __typename: "ModelAircraftConnection",
+  items:  Array<Aircraft | null >,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type CreateMappedTodoMutationVariables = {
+  input: CreateMappedTodoInput,
+  condition?: ModelMappedTodoConditionInput | null,
+};
+
+export type CreateMappedTodoMutation = {
+  createMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -581,17 +777,20 @@ export type CreateTodoMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type UpdateMappedTodoMutationVariables = {
+  input: UpdateMappedTodoInput,
+  condition?: ModelMappedTodoConditionInput | null,
 };
 
-export type UpdateTodoMutation = {
-  updateTodo?:  {
-    __typename: "Todo",
+export type UpdateMappedTodoMutation = {
+  updateMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -605,17 +804,20 @@ export type UpdateTodoMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
+export type DeleteMappedTodoMutationVariables = {
+  input: DeleteMappedTodoInput,
+  condition?: ModelMappedTodoConditionInput | null,
 };
 
-export type DeleteTodoMutation = {
-  deleteTodo?:  {
-    __typename: "Todo",
+export type DeleteMappedTodoMutation = {
+  deleteMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -629,6 +831,9 @@ export type DeleteTodoMutation = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -648,10 +853,16 @@ export type CreateProjectMutation = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -672,10 +883,16 @@ export type UpdateProjectMutation = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -696,10 +913,16 @@ export type DeleteProjectMutation = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -720,10 +943,16 @@ export type CreateTeamMutation = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -744,10 +973,16 @@ export type UpdateTeamMutation = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -768,10 +1003,16 @@ export type DeleteTeamMutation = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -798,12 +1039,18 @@ export type CreateCustomerMutation = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -830,12 +1077,18 @@ export type UpdateCustomerMutation = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -862,12 +1115,18 @@ export type DeleteCustomerMutation = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -886,6 +1145,9 @@ export type CreateCityMutation = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -903,6 +1165,9 @@ export type UpdateCityMutation = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -920,6 +1185,9 @@ export type DeleteCityMutation = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -936,6 +1204,9 @@ export type CreateJSONDataMutation = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -952,6 +1223,9 @@ export type UpdateJSONDataMutation = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -968,16 +1242,187 @@ export type DeleteJSONDataMutation = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type GetTodoQueryVariables = {
+export type CreateFlightMutationVariables = {
+  input: CreateFlightInput,
+  condition?: ModelFlightConditionInput | null,
+};
+
+export type CreateFlightMutation = {
+  createFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateFlightMutationVariables = {
+  input: UpdateFlightInput,
+  condition?: ModelFlightConditionInput | null,
+};
+
+export type UpdateFlightMutation = {
+  updateFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteFlightMutationVariables = {
+  input: DeleteFlightInput,
+  condition?: ModelFlightConditionInput | null,
+};
+
+export type DeleteFlightMutation = {
+  deleteFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type CreateAircraftMutationVariables = {
+  input: CreateAircraftInput,
+  condition?: ModelAircraftConditionInput | null,
+};
+
+export type CreateAircraftMutation = {
+  createAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type UpdateAircraftMutationVariables = {
+  input: UpdateAircraftInput,
+  condition?: ModelAircraftConditionInput | null,
+};
+
+export type UpdateAircraftMutation = {
+  updateAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type DeleteAircraftMutationVariables = {
+  input: DeleteAircraftInput,
+  condition?: ModelAircraftConditionInput | null,
+};
+
+export type DeleteAircraftMutation = {
+  deleteAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type GetMappedTodoQueryVariables = {
   id: string,
 };
 
-export type GetTodoQuery = {
-  getTodo?:  {
-    __typename: "Todo",
+export type GetMappedTodoQuery = {
+  getMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -991,27 +1436,60 @@ export type GetTodoQuery = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
+export type ListMappedTodosQueryVariables = {
+  filter?: ModelMappedTodoFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTodosQuery = {
-  listTodos?:  {
-    __typename: "ModelTodoConnection",
+export type ListMappedTodosQuery = {
+  listMappedTodos?:  {
+    __typename: "ModelMappedTodoConnection",
     items:  Array< {
-      __typename: "Todo",
+      __typename: "MappedTodo",
       id: string,
       name: string,
       description?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncMappedTodosQueryVariables = {
+  filter?: ModelMappedTodoFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncMappedTodosQuery = {
+  syncMappedTodos?:  {
+    __typename: "ModelMappedTodoConnection",
+    items:  Array< {
+      __typename: "MappedTodo",
+      id: string,
+      name: string,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1030,10 +1508,16 @@ export type GetProjectQuery = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1053,9 +1537,39 @@ export type ListProjectsQuery = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncProjectsQueryVariables = {
+  filter?: ModelProjectFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncProjectsQuery = {
+  syncProjects?:  {
+    __typename: "ModelProjectConnection",
+    items:  Array< {
+      __typename: "Project",
+      id: string,
+      name?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      projectTeamId?: string | null,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1074,10 +1588,16 @@ export type GetTeamQuery = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1097,9 +1617,39 @@ export type ListTeamsQuery = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncTeamsQueryVariables = {
+  filter?: ModelTeamFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncTeamsQuery = {
+  syncTeams?:  {
+    __typename: "ModelTeamConnection",
+    items:  Array< {
+      __typename: "Team",
+      id: string,
+      name: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      teamProjectId?: string | null,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1124,12 +1674,18 @@ export type GetCustomerQuery = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1156,9 +1712,46 @@ export type ListCustomersQuery = {
       owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       customerCityId?: string | null,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncCustomersQueryVariables = {
+  filter?: ModelCustomerFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncCustomersQuery = {
+  syncCustomers?:  {
+    __typename: "ModelCustomerConnection",
+    items:  Array< {
+      __typename: "Customer",
+      id: string,
+      name: string,
+      email: string,
+      Mobile: string,
+      customer_notes: string,
+      admin_notes: string,
+      cities?: string | null,
+      langs?: Array< string | null > | null,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      customerCityId?: string | null,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1187,6 +1780,9 @@ export type SearchCustomersQuery = {
       owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       customerCityId?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -1223,6 +1819,9 @@ export type GetCityQuery = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1243,8 +1842,39 @@ export type ListCitiesQuery = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncCitiesQueryVariables = {
+  filter?: ModelCityFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncCitiesQuery = {
+  syncCities?:  {
+    __typename: "ModelCityConnection",
+    items:  Array< {
+      __typename: "City",
+      id: string,
+      name: string,
+      country: string,
+      zipCode: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1260,6 +1890,9 @@ export type GetJSONDataQuery = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1279,8 +1912,196 @@ export type ListJSONDataQuery = {
       data: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncJSONDataQueryVariables = {
+  filter?: ModelJSONDataFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncJSONDataQuery = {
+  syncJSONData?:  {
+    __typename: "ModelJSONDataConnection",
+    items:  Array< {
+      __typename: "JSONData",
+      id: string,
+      name: string,
+      data: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetFlightQueryVariables = {
+  id: string,
+};
+
+export type GetFlightQuery = {
+  getFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListFlightsQueryVariables = {
+  filter?: ModelFlightFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFlightsQuery = {
+  listFlights?:  {
+    __typename: "ModelFlightConnection",
+    items:  Array< {
+      __typename: "Flight",
+      id: string,
+      pilot: string,
+      airplaneId?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncFlightsQueryVariables = {
+  filter?: ModelFlightFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncFlightsQuery = {
+  syncFlights?:  {
+    __typename: "ModelFlightConnection",
+    items:  Array< {
+      __typename: "Flight",
+      id: string,
+      pilot: string,
+      airplaneId?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type GetAircraftQueryVariables = {
+  id: string,
+};
+
+export type GetAircraftQuery = {
+  getAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type ListAircraftQueryVariables = {
+  filter?: ModelAircraftFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListAircraftQuery = {
+  listAircraft?:  {
+    __typename: "ModelAircraftConnection",
+    items:  Array< {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type SyncAircraftQueryVariables = {
+  filter?: ModelAircraftFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncAircraftQuery = {
+  syncAircraft?:  {
+    __typename: "ModelAircraftConnection",
+    items:  Array< {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null >,
+    nextToken?: string | null,
+    startedAt?: number | null,
   } | null,
 };
 
@@ -1309,12 +2130,18 @@ export type OnMutateCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1325,7 +2152,7 @@ export type OnUpdateTodoByIDSubscriptionVariables = {
 
 export type OnUpdateTodoByIDSubscription = {
   onUpdateTodoByID?:  {
-    __typename: "Todo",
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -1339,12 +2166,15 @@ export type OnUpdateTodoByIDSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
+export type OnCreateMappedTodoSubscription = {
+  onCreateMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -1358,12 +2188,15 @@ export type OnCreateTodoSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
+export type OnUpdateMappedTodoSubscription = {
+  onUpdateMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -1377,12 +2210,15 @@ export type OnUpdateTodoSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
+export type OnDeleteMappedTodoSubscription = {
+  onDeleteMappedTodo?:  {
+    __typename: "MappedTodo",
     id: string,
     name: string,
     description?: string | null,
@@ -1396,6 +2232,9 @@ export type OnDeleteTodoSubscription = {
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1410,10 +2249,16 @@ export type OnCreateProjectSubscription = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1429,10 +2274,16 @@ export type OnUpdateProjectSubscription = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1448,10 +2299,16 @@ export type OnDeleteProjectSubscription = {
       name: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       teamProjectId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     projectTeamId?: string | null,
   } | null,
 };
@@ -1467,10 +2324,16 @@ export type OnCreateTeamSubscription = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1486,10 +2349,16 @@ export type OnUpdateTeamSubscription = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1505,10 +2374,16 @@ export type OnDeleteTeamSubscription = {
       name?: string | null,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
       projectTeamId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     teamProjectId?: string | null,
   } | null,
 };
@@ -1530,12 +2405,18 @@ export type OnCreateCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1557,12 +2438,18 @@ export type OnUpdateCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1584,12 +2471,18 @@ export type OnDeleteCustomerSubscription = {
       zipCode: string,
       createdAt: string,
       updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
     } | null,
     cities?: string | null,
     langs?: Array< string | null > | null,
     owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
     customerCityId?: string | null,
   } | null,
 };
@@ -1603,6 +2496,9 @@ export type OnCreateCitySubscription = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1615,6 +2511,9 @@ export type OnUpdateCitySubscription = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1627,6 +2526,9 @@ export type OnDeleteCitySubscription = {
     zipCode: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1638,6 +2540,9 @@ export type OnCreateJSONDataSubscription = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1649,6 +2554,9 @@ export type OnUpdateJSONDataSubscription = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };
 
@@ -1660,5 +2568,146 @@ export type OnDeleteJSONDataSubscription = {
     data: string,
     createdAt: string,
     updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateFlightSubscription = {
+  onCreateFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateFlightSubscription = {
+  onUpdateFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteFlightSubscription = {
+  onDeleteFlight?:  {
+    __typename: "Flight",
+    id: string,
+    pilot: string,
+    airplane?:  {
+      __typename: "Aircraft",
+      id: string,
+      registration: string,
+      category?: string | null,
+      lastIndex?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    } | null,
+    airplaneId?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnCreateAircraftSubscription = {
+  onCreateAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnUpdateAircraftSubscription = {
+  onUpdateAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
+  } | null,
+};
+
+export type OnDeleteAircraftSubscription = {
+  onDeleteAircraft?:  {
+    __typename: "Aircraft",
+    id: string,
+    registration: string,
+    category?: string | null,
+    lastIndex?: string | null,
+    specs?:  {
+      __typename: "AircraftSpecs",
+      passenger?: boolean | null,
+      fuel?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    _version: number,
+    _deleted?: boolean | null,
+    _lastChangedAt: number,
   } | null,
 };

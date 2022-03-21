@@ -29,6 +29,10 @@
         "graphQlLambdaAuthorizer64cabe43": {
           "deploymentBucketName": "amplify-starter-dev-163147-deployment",
           "s3Key": "amplify-builds/graphQlLambdaAuthorizer64cabe43-353239764f7050636555-build.zip"
+        },
+        "storage": {
+          "deploymentBucketName": "amplify-starter-dev-163147-deployment",
+          "s3Key": "amplify-builds/storage-487773486d566c465451-build.zip"
         }
       }
     }
