@@ -24,7 +24,7 @@
     "aws-amplify": "^4.3.8",
     "aws-amplify-react": "^5.1.9",
     "lodash": "^4.17.21",
-    "npm": "^7.24.2",
+    "npm": "^8.11.0",
     "performant-array-to-tree": "^1.9.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
